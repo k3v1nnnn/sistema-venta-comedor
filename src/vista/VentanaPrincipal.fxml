@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -62,7 +63,7 @@
                         <Font size="30.0" />
                      </font>
                   </Label>
-                  <Label text="Label" textFill="#02bf1e">
+                  <Label fx:id="subTotalLabel" text="Label" textFill="#02bf1e">
                      <font>
                         <Font size="30.0" />
                      </font>
@@ -76,11 +77,11 @@
                         <Font size="30.0" />
                      </font>
                   </Label>
-                  <TextField prefHeight="25.0" prefWidth="66.0" promptText="\%">
+                  <Label fx:id="descuentoLabel" text="Label" textFill="RED">
                      <font>
                         <Font size="30.0" />
                      </font>
-                  </TextField>
+                  </Label>
                </children>
             </HBox>
             <HBox alignment="CENTER" layoutX="10.0" layoutY="164.0" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
@@ -90,7 +91,7 @@
                         <Font size="30.0" />
                      </font>
                   </Label>
-                  <Label text="Label" textFill="#02bf1e">
+                  <Label fx:id="totalLabel" text="Label" textFill="#02bf1e">
                      <font>
                         <Font size="30.0" />
                      </font>

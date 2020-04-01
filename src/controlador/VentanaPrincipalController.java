@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package controlador;
 
 import java.net.URL;
@@ -11,23 +7,27 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 
-/**
- * FXML Controller class
- *
- * @author RetailAdmin
- */
 public class VentanaPrincipalController implements Initializable {
 
     @FXML
     private Button agregarProductoBoton;
+    @FXML
+    private Label subTotalLabel;
+    @FXML
+    private Label totalLabel;
+    @FXML
+    private Label descuentoLabel;
 
-    /**
-     * Initializes the controller class.
-     */
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        this.subTotalLabel.setText(null);
+        this.descuentoLabel.setText(null);
+        this.totalLabel.setText(null);
     }    
 
     @FXML
