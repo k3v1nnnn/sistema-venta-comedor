@@ -16,7 +16,7 @@
                <font>
                   <Font size="15.0" />
                </font></Button>
-            <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="6.0" />
+            <Separator orientation="VERTICAL" prefHeight="31.0" prefWidth="0.0" />
             <Button mnemonicParsing="false" text="Configuracion">
                <font>
                   <Font size="15.0" />
@@ -27,9 +27,9 @@
    <right>
       <TableView fx:id="tablaProductos" prefHeight="360.0" prefWidth="247.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn fx:id="cantidadColumna" editable="false" prefWidth="87.0" text="Cantidad" />
-          <TableColumn fx:id="productoColumna" editable="false" prefWidth="95.0" text="Producto" />
-            <TableColumn fx:id="precioColumna" editable="false" prefWidth="75.0" text="Precio" />
+          <TableColumn fx:id="cantidadColumna" editable="false" prefWidth="87.0" sortable="false" text="Cantidad" />
+          <TableColumn fx:id="productoColumna" editable="false" prefWidth="95.0" sortable="false" text="Producto" />
+            <TableColumn fx:id="precioColumna" editable="false" prefWidth="75.0" sortable="false" text="Precio" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
