@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import modelo.BaseDatos;
 
 
 public class VentanaCompraController implements Initializable {
@@ -35,6 +36,7 @@ public class VentanaCompraController implements Initializable {
     private Button aceptarPedido;
     @FXML
     private Button cancelarPedido;
+    private BaseDatos baseDatos;
 
   
     @Override
@@ -42,7 +44,10 @@ public class VentanaCompraController implements Initializable {
         this.subTotal.setText(null);
         this.descuento.setText(null);
         this.total.setText(null);
-    }    
+    }
+    public void VentasCompraControler(BaseDatos baseDeDatos){
+        this.baseDatos=baseDeDatos;
+    }
 
     @FXML
     private void agregarProductoBoton(ActionEvent event) {
