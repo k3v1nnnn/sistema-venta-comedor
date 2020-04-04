@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import modelo.BaseDatos;
+import modelo.Compra;
 import modelo.Producto;
 
 

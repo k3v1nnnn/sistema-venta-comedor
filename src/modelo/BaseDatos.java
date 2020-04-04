@@ -42,9 +42,7 @@ public class BaseDatos {
     }
     public ArrayList<Producto> obtenerProductos(){
         ArrayList<Producto> productosDatos = new ArrayList<>();
-        
         for (Document docu:this.productos.find()){
-            System.out.print(docu.getString("nombre"));
             productosDatos.add(new Producto(docu.getString("nombre"),docu.getDouble("precio"),0));
         }
         return productosDatos;

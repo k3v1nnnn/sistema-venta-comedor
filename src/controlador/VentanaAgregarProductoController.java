@@ -15,9 +15,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import modelo.BaseDatos;
+import modelo.Compra;
 import modelo.Producto;
 
 /**
@@ -43,6 +46,7 @@ public class VentanaAgregarProductoController implements Initializable {
     private TableColumn<Producto,Integer> columnaCantidadProducto;
     private BaseDatos baseDeDatos;
     private Stage stage;
+    private Compra compra;
 
     /**
      * Initializes the controller class.
@@ -71,5 +75,13 @@ public class VentanaAgregarProductoController implements Initializable {
     private void cancelarPedidoBoton(ActionEvent event) {
         this.stage.close();
     }
-    
+
+    @FXML
+    private void obtenerProducto(MouseEvent event) {
+        if (event.getButton().equals(MouseButton.PRIMARY)) {
+        int index = this.tablaDeProductos.getSelectionModel().getSelectedIndex();
+        Producto product = this.tablaDeProductos.getItems().get(index);
+        System.out.print(product.getNombre());
+        }
+    }
 }

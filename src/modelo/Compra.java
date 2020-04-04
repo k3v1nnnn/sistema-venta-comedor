@@ -11,14 +11,4 @@ public class Compra {
     public void agregarProducto(Producto nuevoProducto){
         this.listaDeProductos.add(nuevoProducto);
     }
-    public int precioFinal(){
-        int precio=0;
-        for(Producto i : this.listaDeProductos){
-            //precio=precio+((i.cantidad.get())*(i.precio.get()));
-        }
-        return precio;
-    }
-    public void compraFinalizada(){
-        System.out.print(this.precioFinal());
-    }
 }

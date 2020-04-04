@@ -12,7 +12,7 @@
       <VBox fx:id="productosElegidos" prefHeight="104.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
    </bottom>
    <center>
-      <TableView fx:id="tablaDeProductos" editable="true" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="tablaDeProductos" editable="true" onMouseClicked="#obtenerProducto" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn fx:id="columnaNombreProducto" prefWidth="75.0" sortable="false" text="Nombre" />
           <TableColumn fx:id="columnaPrecioProducto" prefWidth="147.0" sortable="false" text="Precio" />
