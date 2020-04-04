@@ -37,6 +37,7 @@ public class VentanaCompraController implements Initializable {
     @FXML
     private Button cancelarPedido;
     private BaseDatos baseDatos;
+    private Aplicacion aplicacion;
 
   
     @Override
@@ -45,12 +46,14 @@ public class VentanaCompraController implements Initializable {
         this.descuento.setText(null);
         this.total.setText(null);
     }
-    public void VentasCompraControler(BaseDatos baseDeDatos){
+    public void VentasCompraControler(Aplicacion app ,BaseDatos baseDeDatos){
         this.baseDatos=baseDeDatos;
+        this.aplicacion=app;
     }
 
     @FXML
-    private void agregarProductoBoton(ActionEvent event) {
+    private void agregarProductoBoton(ActionEvent event) throws Exception {
+        this.aplicacion.cargarAgregarProducto(this.baseDatos);
     }
 
     @FXML

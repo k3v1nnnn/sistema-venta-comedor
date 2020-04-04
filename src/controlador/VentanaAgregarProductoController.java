@@ -6,6 +6,7 @@
 package controlador;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,7 +14,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import modelo.BaseDatos;
+import modelo.Producto;
 
 /**
  * FXML Controller class
@@ -29,22 +34,33 @@ public class VentanaAgregarProductoController implements Initializable {
     @FXML
     private VBox productosElegidos;
     @FXML
-    private TableView<?> tablaDeProductos;
+    private TableView<Producto> tablaDeProductos;
     @FXML
-    private TableColumn<?, ?> columnaNombreProducto;
+    private TableColumn<Producto,String> columnaNombreProducto;
     @FXML
-    private TableColumn<?, ?> columnaPrecioProducto;
+    private TableColumn<Producto,Double> columnaPrecioProducto;
     @FXML
-    private TableColumn<?, ?> columnaCantidadProducto;
-    @FXML
-    private TableColumn<?, ?> columnaAgregarProducto;
+    private TableColumn<Producto,Integer> columnaCantidadProducto;
+    private BaseDatos baseDeDatos;
+    private Stage stage;
 
     /**
      * Initializes the controller class.
      */
+    public void VentanaAgregarProductoControler(Stage stage,BaseDatos baseDeDatos){
+        this.baseDeDatos=baseDeDatos;
+        this.stage=stage;
+        ArrayList<Producto> p=this.baseDeDatos.obtenerProductos();
+        for (Producto prod:p){
+            this.tablaDeProductos.getItems().add(prod);
+        }
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        this.columnaNombreProducto.setCellValueFactory(new PropertyValueFactory<Producto,String>("nombre"));
+        this.columnaPrecioProducto.setCellValueFactory(new PropertyValueFactory<Producto,Double>("precio"));
+        this.columnaCantidadProducto.setCellValueFactory(new PropertyValueFactory<Producto,Integer>("cantidad"));
     }    
 
     @FXML
@@ -53,6 +69,7 @@ public class VentanaAgregarProductoController implements Initializable {
 
     @FXML
     private void cancelarPedidoBoton(ActionEvent event) {
+        this.stage.close();
     }
     
 }

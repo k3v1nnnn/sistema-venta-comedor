@@ -14,7 +14,7 @@ public class Compra {
     public int precioFinal(){
         int precio=0;
         for(Producto i : this.listaDeProductos){
-            precio=precio+((i.cantidad.get())*(i.precio.get()));
+            //precio=precio+((i.cantidad.get())*(i.precio.get()));
         }
         return precio;
     }

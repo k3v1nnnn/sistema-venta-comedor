@@ -10,12 +10,9 @@ import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
+import java.util.ArrayList;
 import org.bson.Document;
 
-/**
- *
- * @author RetailAdmin
- */
 public class BaseDatos {
     private MongoClient cliente;
     private MongoDatabase bdCliente;
@@ -42,5 +39,14 @@ public class BaseDatos {
 		newDoc.put("nombre", nombre);
 		newDoc.append("precio", precio);
 		this.productos.insertOne(newDoc);
+    }
+    public ArrayList<Producto> obtenerProductos(){
+        ArrayList<Producto> productosDatos = new ArrayList<>();
+        
+        for (Document docu:this.productos.find()){
+            System.out.print(docu.getString("nombre"));
+            productosDatos.add(new Producto(docu.getString("nombre"),docu.getDouble("precio"),0));
+        }
+        return productosDatos;
     }
 }
