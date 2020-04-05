@@ -7,10 +7,13 @@ package controlador;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.ResourceBundle;
+import java.util.function.Consumer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -49,11 +52,12 @@ public class VentanaAgregarProductoController implements Initializable {
     private Stage stage;
     private Compra compra;
     private ArrayList<Producto> filtrarProductos;
+    private VentanaCompraController ventanaCompra;
 
     /**
      * Initializes the controller class.
      */
-    public void VentanaAgregarProductoControler(Stage stage,BaseDatos baseDeDatos,Compra compra){
+    public void VentanaAgregarProductoControler(Stage stage,BaseDatos baseDeDatos,Compra compra,VentanaCompraController ventanaCompra){
         this.baseDeDatos=baseDeDatos;
         this.stage=stage;
         ArrayList<Producto> p=this.baseDeDatos.obtenerProductos();
@@ -62,6 +66,7 @@ public class VentanaAgregarProductoController implements Initializable {
         }
         this.filtrarProductos=new ArrayList<Producto>();
         this.compra=compra;
+        this.ventanaCompra=ventanaCompra;
     }
     
     @Override
@@ -75,6 +80,7 @@ public class VentanaAgregarProductoController implements Initializable {
     private void aceptarPedidoBoton(ActionEvent event) {
         this.compra.filtrarProductosElegidos(this.filtrarProductos);
         this.stage.close();
+        this.ventanaCompra.actualizarPrecio();
     }
 
     @FXML
@@ -87,8 +93,15 @@ public class VentanaAgregarProductoController implements Initializable {
         if (event.getButton().equals(MouseButton.PRIMARY)) {
         int index = this.tablaDeProductos.getSelectionModel().getSelectedIndex();
         Producto producto = this.tablaDeProductos.getItems().get(index);
-        this.productosElegidos.getChildren().add(new ProductoElegido(producto));
-        this.filtrarProductos.add(producto);
+        if(producto.getCantidad()==0){
+            producto.aumentarCantidad();
+            this.productosElegidos.getChildren().add(new ProductoElegido(producto));
+            this.filtrarProductos.add(producto);
+        }else{
+            producto.aumentarCantidad();
+            for (Node node : this.productosElegidos.getChildren()) {
+                ((ProductoElegido) node).actualizarProductoElegido();}
+        }
         }
     }
 }

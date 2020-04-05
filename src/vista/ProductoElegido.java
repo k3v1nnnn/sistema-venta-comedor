@@ -20,15 +20,21 @@ import modelo.Producto;
 public class ProductoElegido extends HBox {
     private Label infoProducto;
     private Button sacarProducto;
+    private Producto productoElegido;
     
     public ProductoElegido(Producto infoProducto){
+        this.productoElegido=infoProducto;
         this.setSpacing(100);
         this.setAlignment(Pos.CENTER);
         this.setPadding(new Insets(5,5,5,5));
         this.infoProducto=new Label();
-        this.infoProducto.setText(infoProducto.getCantidad()+" - "+infoProducto.getNombre()+" - "+infoProducto.getPrecio());
+        this.actualizarProductoElegido();
         this.sacarProducto=new Button("Quitar");
         this.sacarProducto.setOnAction(new ProductoElegidoController(this,infoProducto));
         this.getChildren().addAll(this.infoProducto,this.sacarProducto);
+    }
+    
+    public void actualizarProductoElegido(){
+         this.infoProducto.setText(this.productoElegido.getCantidad()+" - "+this.productoElegido.getNombre()+" - "+this.productoElegido.getPrecio());
     }
 }

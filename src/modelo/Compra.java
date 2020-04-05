@@ -12,10 +12,24 @@ public class Compra {
         this.listaDeProductos.add(nuevoProducto);
     }
     public void filtrarProductosElegidos(ArrayList<Producto> nuevosProductos){
-        if(nuevosProductos.isEmpty()){
-            System.out.println("vacio");
-        }else{
-            System.out.println("lleno");
+        if(!nuevosProductos.isEmpty()){
+            for(Producto prod:nuevosProductos){
+                if(prod.getEstado()){
+                    this.listaDeProductos.add(prod);
+                }
+            }
         }
+    }
+    public double subTotalCompra(){
+        double subTotal=0;
+        if(!this.listaDeProductos.isEmpty()){
+            for (Producto prod:this.listaDeProductos){
+                subTotal=subTotal+(prod.getCantidad()*prod.getPrecio());
+            }
+        }
+        return subTotal;
+    }
+    public ArrayList<Producto> productos(){
+        return this.listaDeProductos;
     }
 }

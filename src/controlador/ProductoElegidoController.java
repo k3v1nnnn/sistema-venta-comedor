@@ -16,14 +16,20 @@ import vista.ProductoElegido;
  */
 public class ProductoElegidoController implements EventHandler<ActionEvent> {
    private ProductoElegido elegido;
+   private Producto producto;
 
     public ProductoElegidoController(ProductoElegido nuevoElegido,Producto producto){
         this.elegido=nuevoElegido;
-        producto.setEstado(false);
+        this.producto=producto;
     }
     @Override
     public void handle(ActionEvent event) {
-        this.elegido.setDisable(true);
+        this.producto.disminuirCantidad();
+        this.elegido.actualizarProductoElegido();
+        if(this.producto.getCantidad()<=0){
+            this.elegido.setDisable(true);
+            this.producto.setEstado(false);
+        }
     }
     
 }

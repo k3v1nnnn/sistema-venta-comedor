@@ -17,11 +17,13 @@ public class BaseDatos {
     private MongoClient cliente;
     private MongoDatabase bdCliente;
     private MongoCollection<Document> productos;
+    private MongoCollection<Document> ventas;
     
     public BaseDatos(){
         this.cliente=MongoClients.create();
         this.bdCliente=this.cliente.getDatabase("comedor");
         this.productos=this.bdCliente.getCollection("productos");
+        this.ventas=this.bdCliente.getCollection("ventas");
     }
     
     public void modificarProducto(String nombre,int precio) {
@@ -43,7 +45,7 @@ public class BaseDatos {
     public ArrayList<Producto> obtenerProductos(){
         ArrayList<Producto> productosDatos = new ArrayList<>();
         for (Document docu:this.productos.find()){
-            productosDatos.add(new Producto(docu.getString("nombre"),docu.getDouble("precio"),1));
+            productosDatos.add(new Producto(docu.getString("nombre"),docu.getDouble("precio"),0));
         }
         return productosDatos;
     }

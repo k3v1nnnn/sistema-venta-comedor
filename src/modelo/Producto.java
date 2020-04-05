@@ -11,7 +11,7 @@ public class Producto {
     private IntegerProperty cantidad;
     private StringProperty nombre;
     private DoubleProperty precio;
-    private Boolean estado;
+    private boolean estado;
     
     public Producto(String nuevoNombre,double nuevoPrecio,int nuevaCantidad){
         this.cantidad=new SimpleIntegerProperty(nuevaCantidad);
@@ -32,4 +32,10 @@ public class Producto {
     public void setPrecio(double precio) {this.precio.set(precio);}
     public void setCantidad(int cantidad) {this.cantidad.set(cantidad);}
     public void setEstado(boolean nuevoEstado){this.estado=nuevoEstado;}
+    public void aumentarCantidad(){
+        this.setCantidad(this.getCantidad()+1);
+    }
+    public void disminuirCantidad(){
+        this.setCantidad(this.getCantidad()-1);
+    }
 }
