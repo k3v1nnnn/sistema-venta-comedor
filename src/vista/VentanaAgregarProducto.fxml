@@ -8,10 +8,7 @@
 <?import javafx.scene.layout.*?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.VentanaAgregarProductoController">
-   <bottom>
-      <VBox fx:id="productosElegidos" prefHeight="104.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
-   </bottom>
-   <center>
+   <top>
       <TableView fx:id="tablaDeProductos" editable="true" onMouseClicked="#obtenerProducto" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn fx:id="columnaNombreProducto" prefWidth="75.0" sortable="false" text="Nombre" />
@@ -22,8 +19,8 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-   </center>
-   <top>
+   </top>
+   <bottom>
       <HBox alignment="CENTER" prefHeight="38.0" prefWidth="600.0" spacing="50.0" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="aceptarPedido" mnemonicParsing="false" onAction="#aceptarPedidoBoton" text="Aceptar">
@@ -38,5 +35,12 @@
             </Button>
          </children>
       </HBox>
-   </top>
+   </bottom>
+   <center>
+      <ScrollPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <content>
+            <VBox fx:id="productosElegidos" prefHeight="163.0" prefWidth="588.0" />
+         </content>
+      </ScrollPane>
+   </center>
 </BorderPane>

@@ -19,29 +19,16 @@ public class Aplicacion extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         BaseDatos baseDeDatos = new BaseDatos();
-        this.cargarInicio(this,baseDeDatos,stage);
+        this.cargarInicio(baseDeDatos,stage);
     }
     
-    public void cargarInicio(Aplicacion app,BaseDatos baseDeDatos,Stage stage) throws Exception{
+    public void cargarInicio(BaseDatos baseDeDatos,Stage stage) throws Exception{
         stage.setTitle("Inicio");
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Aplicacion.class.getResource("/vista/VentanaCompra.fxml"));
         Parent parent = loader.load();
         VentanaCompraController ventanaCompra = loader.getController();
-        ventanaCompra.VentasCompraControler(app,baseDeDatos);
-        Scene scene = new Scene(parent);
-        stage.setScene(scene);
-        stage.show();
-    }
-    
-    public void cargarAgregarProducto(BaseDatos baseDeDatos) throws Exception{
-        Stage stage = new Stage();
-        stage.setTitle("Agregar Producto");
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Aplicacion.class.getResource("/vista/VentanaAgregarProducto.fxml"));
-        Parent parent = loader.load();
-        VentanaAgregarProductoController ventanaAgregarProducto = loader.getController();
-        ventanaAgregarProducto.VentanaAgregarProductoControler(stage,baseDeDatos);
+        ventanaCompra.VentasCompraControler(baseDeDatos);
         Scene scene = new Scene(parent);
         stage.setScene(scene);
         stage.show();

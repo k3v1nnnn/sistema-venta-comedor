@@ -11,4 +11,11 @@ public class Compra {
     public void agregarProducto(Producto nuevoProducto){
         this.listaDeProductos.add(nuevoProducto);
     }
+    public void filtrarProductosElegidos(ArrayList<Producto> nuevosProductos){
+        if(nuevosProductos.isEmpty()){
+            System.out.println("vacio");
+        }else{
+            System.out.println("lleno");
+        }
+    }
 }

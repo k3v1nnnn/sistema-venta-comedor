@@ -11,11 +11,13 @@ public class Producto {
     private IntegerProperty cantidad;
     private StringProperty nombre;
     private DoubleProperty precio;
+    private Boolean estado;
     
     public Producto(String nuevoNombre,double nuevoPrecio,int nuevaCantidad){
         this.cantidad=new SimpleIntegerProperty(nuevaCantidad);
         this.nombre=new SimpleStringProperty(nuevoNombre);
         this.precio=new SimpleDoubleProperty(nuevoPrecio);
+        this.estado=true;
     }
     public StringProperty nombreProperty() {return this.nombre;};
     public DoubleProperty precioProperty() {return this.precio;};
@@ -24,8 +26,10 @@ public class Producto {
     public String getNombre() {return this.nombre.get();}
     public double getPrecio() {return this.precio.get();}
     public int getCantidad() {return this.cantidad.get();}
+    public boolean getEstado(){return this.estado;}
     
     public void setNombre(String nombre) {this.nombre.set(nombre);}
     public void setPrecio(double precio) {this.precio.set(precio);}
     public void setCantidad(int cantidad) {this.cantidad.set(cantidad);}
+    public void setEstado(boolean nuevoEstado){this.estado=nuevoEstado;}
 }

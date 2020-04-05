@@ -22,6 +22,7 @@ import javafx.stage.Stage;
 import modelo.BaseDatos;
 import modelo.Compra;
 import modelo.Producto;
+import vista.ProductoElegido;
 
 /**
  * FXML Controller class
@@ -47,17 +48,20 @@ public class VentanaAgregarProductoController implements Initializable {
     private BaseDatos baseDeDatos;
     private Stage stage;
     private Compra compra;
+    private ArrayList<Producto> filtrarProductos;
 
     /**
      * Initializes the controller class.
      */
-    public void VentanaAgregarProductoControler(Stage stage,BaseDatos baseDeDatos){
+    public void VentanaAgregarProductoControler(Stage stage,BaseDatos baseDeDatos,Compra compra){
         this.baseDeDatos=baseDeDatos;
         this.stage=stage;
         ArrayList<Producto> p=this.baseDeDatos.obtenerProductos();
         for (Producto prod:p){
             this.tablaDeProductos.getItems().add(prod);
         }
+        this.filtrarProductos=new ArrayList<Producto>();
+        this.compra=compra;
     }
     
     @Override
@@ -69,6 +73,8 @@ public class VentanaAgregarProductoController implements Initializable {
 
     @FXML
     private void aceptarPedidoBoton(ActionEvent event) {
+        this.compra.filtrarProductosElegidos(this.filtrarProductos);
+        this.stage.close();
     }
 
     @FXML
@@ -80,8 +86,9 @@ public class VentanaAgregarProductoController implements Initializable {
     private void obtenerProducto(MouseEvent event) {
         if (event.getButton().equals(MouseButton.PRIMARY)) {
         int index = this.tablaDeProductos.getSelectionModel().getSelectedIndex();
-        Producto product = this.tablaDeProductos.getItems().get(index);
-        System.out.print(product.getNombre());
+        Producto producto = this.tablaDeProductos.getItems().get(index);
+        this.productosElegidos.getChildren().add(new ProductoElegido(producto));
+        this.filtrarProductos.add(producto);
         }
     }
 }
