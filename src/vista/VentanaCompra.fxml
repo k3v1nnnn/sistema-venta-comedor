@@ -28,7 +28,7 @@
       <TableView fx:id="tablaProductos" prefHeight="360.0" prefWidth="247.0" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn fx:id="cantidadColumna" editable="false" prefWidth="87.0" sortable="false" text="Cantidad" />
-          <TableColumn fx:id="productoColumna" editable="false" prefWidth="95.0" sortable="false" text="Producto" />
+          <TableColumn fx:id="productoColumna" editable="false" prefWidth="95.0" sortable="false" text="Nombre" />
             <TableColumn fx:id="precioColumna" editable="false" prefWidth="75.0" sortable="false" text="Precio" />
         </columns>
          <columnResizePolicy>

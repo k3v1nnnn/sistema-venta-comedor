@@ -1,6 +1,8 @@
 package controlador;
 
 import java.net.URL;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -55,7 +57,7 @@ public class VentanaCompraController implements Initializable {
         this.cantidadColumna.setCellValueFactory(new PropertyValueFactory<Producto,Integer>("cantidad"));
         this.montoDescuento=0.0;
         this.compra=new Compra();
-        this.actualizarPrecio();
+        this.actualizarVentana();
         
     }
     public void VentasCompraControler(BaseDatos baseDeDatos){
@@ -77,19 +79,37 @@ public class VentanaCompraController implements Initializable {
     }
 
     @FXML
-    private void sacarProductoBoton(ActionEvent event) {
+    private void sacarProductoBoton(ActionEvent event) throws Exception {
+        Stage stage = new Stage();
+        stage.setTitle("Sacar Producto");
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Aplicacion.class.getResource("/vista/VentanaQuitarProducto.fxml"));
+        Parent parent = loader.load();
+        VentanaQuitarProductoController ventanaQuitarProducto = loader.getController();
+        ventanaQuitarProducto.VentanaQuitarProductoControler(stage,this.compra);
+        Scene scene = new Scene(parent);
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
     private void aceptarPedidoBoton(ActionEvent event) {
+        Calendar hoy = Calendar.getInstance();
+        int dia = hoy.get(Calendar.DATE);
+        int mes = hoy.get(Calendar.MONTH)+1;
+        int ano = hoy.get(Calendar.YEAR);
+        double precioTotal=this.compra.subTotalCompra()-this.montoDescuento;
+        this.baseDatos.agregarVenta(dia, mes, ano, precioTotal);
+        this.compra=new Compra();
+        this.actualizarVentana();
     }
 
     @FXML
     private void cancelarPedidoBoton(ActionEvent event) {
         this.compra=new Compra();
-        this.actualizarPrecio();
+        this.actualizarVentana();
     }
-    public void actualizarPrecio(){
+    public void actualizarVentana(){
         double subPrecio=this.compra.subTotalCompra();
         this.subTotal.setText(subPrecio+"");
         this.descuento.setText(this.montoDescuento+"");
@@ -97,6 +117,16 @@ public class VentanaCompraController implements Initializable {
         this.tablaProductos.getItems().clear();
         for (Producto prod:this.compra.productos()){
             this.tablaProductos.getItems().add(prod);
+        }
+        if(subPrecio==0 && this.montoDescuento==0){
+            this.aceptarPedido.setDisable(true);
+        }else{
+            this.aceptarPedido.setDisable(false);
+        }
+        if(this.compra.productos().isEmpty()){
+            this.sacarProducto.setDisable(true);
+        }else{
+            this.sacarProducto.setDisable(false);
         }
     }
 }

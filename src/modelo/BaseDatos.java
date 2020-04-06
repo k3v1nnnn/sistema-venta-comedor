@@ -42,6 +42,14 @@ public class BaseDatos {
 		newDoc.append("precio", precio);
 		this.productos.insertOne(newDoc);
     }
+    public void agregarVenta(int dia,int mes,int annio,double precio){
+        Document newDocu=new Document();
+        newDocu.put("dia",dia);
+        newDocu.put("mes",mes);
+        newDocu.put("ano",annio);
+        newDocu.append("precio",precio);
+        this.ventas.insertOne(newDocu);
+    }
     public ArrayList<Producto> obtenerProductos(){
         ArrayList<Producto> productosDatos = new ArrayList<>();
         for (Document docu:this.productos.find()){

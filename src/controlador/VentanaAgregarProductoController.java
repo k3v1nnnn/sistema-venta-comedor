@@ -7,9 +7,7 @@ package controlador;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.ResourceBundle;
-import java.util.function.Consumer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -80,7 +78,7 @@ public class VentanaAgregarProductoController implements Initializable {
     private void aceptarPedidoBoton(ActionEvent event) {
         this.compra.filtrarProductosElegidos(this.filtrarProductos);
         this.stage.close();
-        this.ventanaCompra.actualizarPrecio();
+        this.ventanaCompra.actualizarVentana();
     }
 
     @FXML

@@ -11,9 +11,9 @@
    <top>
       <TableView fx:id="tablaDeProductos" editable="true" onMouseClicked="#obtenerProducto" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <columns>
+            <TableColumn fx:id="columnaCantidadProducto" prefWidth="152.0" sortable="false" text="Cantidad" />
           <TableColumn fx:id="columnaNombreProducto" prefWidth="75.0" sortable="false" text="Nombre" />
           <TableColumn fx:id="columnaPrecioProducto" prefWidth="147.0" sortable="false" text="Precio" />
-            <TableColumn fx:id="columnaCantidadProducto" prefWidth="152.0" sortable="false" text="Cantidad" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
