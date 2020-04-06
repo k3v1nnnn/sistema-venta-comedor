@@ -1,14 +1,11 @@
 package controlador;
 
-import java.util.Date;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import modelo.BaseDatos;
-import modelo.Compra;
-import modelo.Producto;
 
 
 public class Aplicacion extends Application {
@@ -29,7 +26,7 @@ public class Aplicacion extends Application {
         loader.setLocation(Aplicacion.class.getResource("/vista/VentanaCompra.fxml"));
         Parent parent = loader.load();
         VentanaCompraController ventanaCompra = loader.getController();
-        ventanaCompra.VentasCompraControler(baseDeDatos);
+        ventanaCompra.VentasCompraControler(baseDeDatos,this);
         Scene scene = new Scene(parent);
         stage.setScene(scene);
         stage.show();

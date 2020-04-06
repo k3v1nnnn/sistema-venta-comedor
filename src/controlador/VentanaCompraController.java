@@ -2,7 +2,6 @@ package controlador;
 
 import java.net.URL;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -48,6 +48,9 @@ public class VentanaCompraController implements Initializable {
     private BaseDatos baseDatos;
     private Compra compra;
     private double montoDescuento;
+    @FXML
+    private Hyperlink link;
+    private Aplicacion ap;
 
   
     @Override
@@ -60,8 +63,9 @@ public class VentanaCompraController implements Initializable {
         this.actualizarVentana();
         
     }
-    public void VentasCompraControler(BaseDatos baseDeDatos){
+    public void VentasCompraControler(BaseDatos baseDeDatos,Aplicacion app){
         this.baseDatos=baseDeDatos;
+        this.ap=app;
     }
 
     @FXML
@@ -86,7 +90,7 @@ public class VentanaCompraController implements Initializable {
         loader.setLocation(Aplicacion.class.getResource("/vista/VentanaQuitarProducto.fxml"));
         Parent parent = loader.load();
         VentanaQuitarProductoController ventanaQuitarProducto = loader.getController();
-        ventanaQuitarProducto.VentanaQuitarProductoControler(stage,this.compra);
+        ventanaQuitarProducto.VentanaQuitarProductoControler(stage,this.compra,this);
         Scene scene = new Scene(parent);
         stage.setScene(scene);
         stage.show();
@@ -128,5 +132,10 @@ public class VentanaCompraController implements Initializable {
         }else{
             this.sacarProducto.setDisable(false);
         }
+    }
+
+    @FXML
+    private void abrirPagina(ActionEvent event) {
+        this.ap.getHostServices().showDocument("https://github.com/k3v1nnnn/ventasComedor");
     }
 }

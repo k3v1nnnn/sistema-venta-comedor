@@ -11,12 +11,12 @@
    <bottom>
       <HBox alignment="CENTER" prefHeight="52.0" prefWidth="600.0" spacing="50.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="cancelarAceptarProducto" mnemonicParsing="false" onAction="#cancelarAceptarProductoBoton" text="Aceptar">
+            <Button fx:id="aceptarProductos" mnemonicParsing="false" onAction="#aceptarProductoBoton" text="Aceptar">
                <font>
                   <Font size="15.0" />
                </font>
             </Button>
-            <Button fx:id="cancelarQuitarProducto" mnemonicParsing="false" onAction="#cancelarQuitarProductoBoton" text="Cancelar">
+            <Button fx:id="cancelarProducto" mnemonicParsing="false" onAction="#cancelarProductoBoton" text="Cancelar">
                <font>
                   <Font size="15.0" />
                </font>

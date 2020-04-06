@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controlador;
 
 import java.net.URL;
@@ -11,7 +6,6 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -21,19 +15,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import modelo.Compra;
 import modelo.Producto;
-import vista.ProductoElegido;
 
-/**
- * FXML Controller class
- *
- * @author RetailAdmin
- */
 public class VentanaQuitarProductoController implements Initializable {
 
-    @FXML
-    private Button cancelarAceptarProducto;
-    @FXML
-    private Button cancelarQuitarProducto;
     @FXML
     private TableView<Producto> tablaProductos;
     @FXML
@@ -45,16 +29,20 @@ public class VentanaQuitarProductoController implements Initializable {
     private Stage stage;
     private Compra compra;
     private VentanaCompraController ventanaCompra;
+    @FXML
+    private Button aceptarProductos;
+    @FXML
+    private Button cancelarProducto;
+    private ArrayList<Producto> aux;
 
-    /**
-     * Initializes the controller class.
-     */
-    
+
     public void VentanaQuitarProductoControler(Stage stage,Compra compra,VentanaCompraController ventanaCompra){
         this.stage=stage;
         this.compra=compra;
-        ArrayList<Producto> p=this.compra.productos();
-        for (Producto prod:p){
+        this.aux=new ArrayList<Producto>();
+        ArrayList<Producto> listaProductos=this.compra.productos();
+        for (Producto prod:listaProductos){
+            this.aux.add(new Producto(prod.getNombre(),prod.getPrecio(),prod.getCantidad()));
             this.tablaProductos.getItems().add(prod);
         }
         this.ventanaCompra=ventanaCompra;
@@ -68,13 +56,6 @@ public class VentanaQuitarProductoController implements Initializable {
         this.columnaCantidad.setCellValueFactory(new PropertyValueFactory<Producto,Integer>("cantidad"));
     }    
 
-    @FXML
-    private void cancelarAceptarProductoBoton(ActionEvent event) {
-    }
-
-    @FXML
-    private void cancelarQuitarProductoBoton(ActionEvent event) {
-    }
 
     @FXML
     private void sacarProducto(MouseEvent event) {
@@ -85,9 +66,21 @@ public class VentanaQuitarProductoController implements Initializable {
             producto.setEstado(false);
         }else{
             producto.disminuirCantidad();
-            /*for (Node node : this.productosElegidos.getChildren()) {
-                ((ProductoElegido) node).actualizarProductoElegido();}*/
         }
         }
+    }
+
+    @FXML
+    private void aceptarProductoBoton(ActionEvent event) {
+        this.aux=null;
+        this.stage.close();
+        this.ventanaCompra.actualizarVentana();
+    }
+
+    @FXML
+    private void cancelarProductoBoton(ActionEvent event) {
+        this.compra.reemplazarProductos(this.aux);
+        this.stage.close();
+        this.ventanaCompra.actualizarVentana();
     }
     }

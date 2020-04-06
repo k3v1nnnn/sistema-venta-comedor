@@ -17,10 +17,11 @@
                   <Font size="15.0" />
                </font></Button>
             <Separator orientation="VERTICAL" prefHeight="31.0" prefWidth="0.0" />
-            <Button mnemonicParsing="false" text="Configuracion">
+            <Button disable="true" mnemonicParsing="false" text="Configuracion">
                <font>
                   <Font size="15.0" />
                </font></Button>
+            <Hyperlink fx:id="link" alignment="CENTER" onAction="#abrirPagina" text="Version 0.1" translateX="300.0" />
         </items>
       </ToolBar>
    </top>

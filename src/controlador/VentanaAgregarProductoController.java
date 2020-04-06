@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controlador;
 
 import java.net.URL;
@@ -25,11 +20,7 @@ import modelo.Compra;
 import modelo.Producto;
 import vista.ProductoElegido;
 
-/**
- * FXML Controller class
- *
- * @author RetailAdmin
- */
+
 public class VentanaAgregarProductoController implements Initializable {
 
     @FXML
@@ -52,9 +43,6 @@ public class VentanaAgregarProductoController implements Initializable {
     private ArrayList<Producto> filtrarProductos;
     private VentanaCompraController ventanaCompra;
 
-    /**
-     * Initializes the controller class.
-     */
     public void VentanaAgregarProductoControler(Stage stage,BaseDatos baseDeDatos,Compra compra,VentanaCompraController ventanaCompra){
         this.baseDeDatos=baseDeDatos;
         this.stage=stage;

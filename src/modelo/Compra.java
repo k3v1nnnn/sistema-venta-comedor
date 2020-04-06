@@ -32,4 +32,7 @@ public class Compra {
     public ArrayList<Producto> productos(){
         return this.listaDeProductos;
     }
+    public void reemplazarProductos(ArrayList<Producto> nuevo){
+        this.listaDeProductos=nuevo;
+    }
 }
