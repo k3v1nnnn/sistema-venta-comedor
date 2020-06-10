@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="controlador.VentanaErrorBaseDatosController">
+   <children>
+      <Text fill="#f20707" layoutX="107.0" layoutY="188.0" stroke="#f5e7e7" strokeType="OUTSIDE" strokeWidth="0.0" text="Error con base de datos" textAlignment="CENTER" wrappingWidth="386.361328125">
+         <font>
+            <Font name="Arial" size="50.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

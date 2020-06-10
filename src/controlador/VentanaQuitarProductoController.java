@@ -25,15 +25,15 @@ public class VentanaQuitarProductoController implements Initializable {
     @FXML
     private TableColumn<Producto,String> columnaNombre;
     @FXML
-    private TableColumn<Producto,Double> columnaPrecio;
-    private Stage stage;
-    private Compra compra;
-    private VentanaCompraController ventanaCompra;
+    private TableColumn<Producto,Integer> columnaPrecio;
     @FXML
     private Button aceptarProductos;
     @FXML
     private Button cancelarProducto;
     private ArrayList<Producto> aux;
+    private Stage stage;
+    private Compra compra;
+    private VentanaCompraController ventanaCompra;
 
 
     public void VentanaQuitarProductoControler(Stage stage,Compra compra,VentanaCompraController ventanaCompra){
@@ -52,7 +52,7 @@ public class VentanaQuitarProductoController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.columnaNombre.setCellValueFactory(new PropertyValueFactory<Producto,String>("nombre"));
-        this.columnaPrecio.setCellValueFactory(new PropertyValueFactory<Producto,Double>("precio"));
+        this.columnaPrecio.setCellValueFactory(new PropertyValueFactory<Producto,Integer>("precio"));
         this.columnaCantidad.setCellValueFactory(new PropertyValueFactory<Producto,Integer>("cantidad"));
     }    
 
@@ -62,11 +62,7 @@ public class VentanaQuitarProductoController implements Initializable {
         if (event.getButton().equals(MouseButton.PRIMARY)) {
         int index = this.tablaProductos.getSelectionModel().getSelectedIndex();
         Producto producto = this.tablaProductos.getItems().get(index);
-        if(producto.getCantidad()==0){
-            producto.setEstado(false);
-        }else{
-            producto.disminuirCantidad();
-        }
+        producto.disminuirCantidad();
         }
     }
 
@@ -74,6 +70,7 @@ public class VentanaQuitarProductoController implements Initializable {
     private void aceptarProductoBoton(ActionEvent event) {
         this.aux=null;
         this.stage.close();
+        this.compra.actualizarProductos();
         this.ventanaCompra.actualizarVentana();
     }
 

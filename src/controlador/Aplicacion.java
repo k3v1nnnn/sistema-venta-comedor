@@ -5,7 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import modelo.BaseDatos;
+import modelo.BaseDatosCsv;
 
 
 public class Aplicacion extends Application {
@@ -16,11 +16,12 @@ public class Aplicacion extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        BaseDatos baseDeDatos = new BaseDatos();
-        this.cargarInicio(baseDeDatos,stage);
+        //BaseDatosMongoDB baseDeDatos = new BaseDatosMongoDB();
+        BaseDatosCsv baseDeDatos2=new BaseDatosCsv();
+        this.cargarInicio(baseDeDatos2,stage);
     }
     
-    public void cargarInicio(BaseDatos baseDeDatos,Stage stage) throws Exception{
+    public void cargarInicio(BaseDatosCsv baseDeDatos,Stage stage) throws Exception{
         stage.setTitle("Inicio");
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(Aplicacion.class.getResource("/vista/VentanaCompra.fxml"));

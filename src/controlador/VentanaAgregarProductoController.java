@@ -15,7 +15,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import modelo.BaseDatos;
+import modelo.BaseDatosCsv;
 import modelo.Compra;
 import modelo.Producto;
 import vista.ProductoElegido;
@@ -34,21 +34,21 @@ public class VentanaAgregarProductoController implements Initializable {
     @FXML
     private TableColumn<Producto,String> columnaNombreProducto;
     @FXML
-    private TableColumn<Producto,Double> columnaPrecioProducto;
+    private TableColumn<Producto,Integer> columnaPrecioProducto;
     @FXML
     private TableColumn<Producto,Integer> columnaCantidadProducto;
-    private BaseDatos baseDeDatos;
+    private BaseDatosCsv baseDeDatos;
     private Stage stage;
     private Compra compra;
     private ArrayList<Producto> filtrarProductos;
     private VentanaCompraController ventanaCompra;
 
-    public void VentanaAgregarProductoControler(Stage stage,BaseDatos baseDeDatos,Compra compra,VentanaCompraController ventanaCompra){
+    public void VentanaAgregarProductoControler(Stage stage,BaseDatosCsv baseDeDatos,Compra compra,VentanaCompraController ventanaCompra){
         this.baseDeDatos=baseDeDatos;
         this.stage=stage;
-        ArrayList<Producto> p=this.baseDeDatos.obtenerProductos();
-        for (Producto prod:p){
-            this.tablaDeProductos.getItems().add(prod);
+        ArrayList<Producto> productos=this.baseDeDatos.obtenerProductos();
+        for (Producto unProducto:productos){
+            this.tablaDeProductos.getItems().add(unProducto);
         }
         this.filtrarProductos=new ArrayList<Producto>();
         this.compra=compra;
@@ -58,7 +58,7 @@ public class VentanaAgregarProductoController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.columnaNombreProducto.setCellValueFactory(new PropertyValueFactory<Producto,String>("nombre"));
-        this.columnaPrecioProducto.setCellValueFactory(new PropertyValueFactory<Producto,Double>("precio"));
+        this.columnaPrecioProducto.setCellValueFactory(new PropertyValueFactory<Producto,Integer>("precio"));
         this.columnaCantidadProducto.setCellValueFactory(new PropertyValueFactory<Producto,Integer>("cantidad"));
     }    
 
@@ -79,12 +79,12 @@ public class VentanaAgregarProductoController implements Initializable {
         if (event.getButton().equals(MouseButton.PRIMARY)) {
         int index = this.tablaDeProductos.getSelectionModel().getSelectedIndex();
         Producto producto = this.tablaDeProductos.getItems().get(index);
-        if(producto.getCantidad()==0){
-            producto.aumentarCantidad();
+        producto.aumentarCantidad();
+        if(!producto.estaEnTabla()){
             this.productosElegidos.getChildren().add(new ProductoElegido(producto));
             this.filtrarProductos.add(producto);
+            producto.enTabla();
         }else{
-            producto.aumentarCantidad();
             for (Node node : this.productosElegidos.getChildren()) {
                 ((ProductoElegido) node).actualizarProductoElegido();}
         }

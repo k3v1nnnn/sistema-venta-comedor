@@ -26,6 +26,6 @@ public class ProductoElegido extends HBox {
     }
     
     public void actualizarProductoElegido(){
-         this.infoProducto.setText(this.productoElegido.getCantidad()+" - "+this.productoElegido.getNombre()+" - "+this.productoElegido.getPrecio());
+         this.infoProducto.setText(this.productoElegido.infoProducto());
     }
 }

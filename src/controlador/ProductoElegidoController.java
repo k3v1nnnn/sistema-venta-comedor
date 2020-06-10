@@ -17,10 +17,6 @@ public class ProductoElegidoController implements EventHandler<ActionEvent> {
     public void handle(ActionEvent event) {
         this.producto.disminuirCantidad();
         this.elegido.actualizarProductoElegido();
-        if(this.producto.getCantidad()<=0){
-            this.elegido.setDisable(true);
-            this.producto.setEstado(false);
-        }
     }
     
 }

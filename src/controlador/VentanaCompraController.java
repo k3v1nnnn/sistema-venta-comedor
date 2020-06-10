@@ -16,7 +16,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import modelo.BaseDatos;
+import modelo.BaseDatosCsv;
+import modelo.BaseDatosMongoDB;
 import modelo.Compra;
 import modelo.Producto;
 
@@ -36,7 +37,7 @@ public class VentanaCompraController implements Initializable {
     @FXML
     private TableColumn<Producto,String> productoColumna;
     @FXML
-    private TableColumn<Producto,Double> precioColumna;
+    private TableColumn<Producto,Integer> precioColumna;
     @FXML
     private Button agregarProducto;
     @FXML
@@ -45,25 +46,25 @@ public class VentanaCompraController implements Initializable {
     private Button aceptarPedido;
     @FXML
     private Button cancelarPedido;
-    private BaseDatos baseDatos;
-    private Compra compra;
-    private double montoDescuento;
     @FXML
     private Hyperlink link;
+    private BaseDatosCsv baseDatos;
+    private Compra compra;
+    private int montoDescuento;
     private Aplicacion ap;
 
   
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.productoColumna.setCellValueFactory(new PropertyValueFactory<Producto,String>("nombre"));
-        this.precioColumna.setCellValueFactory(new PropertyValueFactory<Producto,Double>("precio"));
+        this.precioColumna.setCellValueFactory(new PropertyValueFactory<Producto,Integer>("precio"));
         this.cantidadColumna.setCellValueFactory(new PropertyValueFactory<Producto,Integer>("cantidad"));
-        this.montoDescuento=0.0;
+        this.montoDescuento=0;
         this.compra=new Compra();
         this.actualizarVentana();
         
     }
-    public void VentasCompraControler(BaseDatos baseDeDatos,Aplicacion app){
+    public void VentasCompraControler(BaseDatosCsv baseDeDatos,Aplicacion app){
         this.baseDatos=baseDeDatos;
         this.ap=app;
     }
@@ -102,8 +103,8 @@ public class VentanaCompraController implements Initializable {
         int dia = hoy.get(Calendar.DATE);
         int mes = hoy.get(Calendar.MONTH)+1;
         int ano = hoy.get(Calendar.YEAR);
-        double precioTotal=this.compra.subTotalCompra()-this.montoDescuento;
-        this.baseDatos.agregarVenta(dia, mes, ano, precioTotal);
+        int precioTotal=this.compra.subTotalCompra()-this.montoDescuento;
+        //this.baseDatos.agregarVenta(dia, mes, ano, precioTotal);
         this.compra=new Compra();
         this.actualizarVentana();
     }
