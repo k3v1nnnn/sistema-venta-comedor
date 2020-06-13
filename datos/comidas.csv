@@ -1,4 +1,4 @@
-nombre,precio
-"pan","20"
-"sopa","50"
-"carne","10"
+id,nombre,precio
+"0","pan","20"
+"1","sopa","50"
+"2","carne","10"

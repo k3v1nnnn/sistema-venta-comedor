@@ -38,7 +38,7 @@ public class BaseDatosCsv implements BaseDatos{
             csvReader.skip(1);
             String[] nextRecord;
             while ((nextRecord = csvReader.readNext()) != null) {
-                productosDatos.add(new Producto(nextRecord[0],Integer.parseInt(nextRecord[1]),0));
+                productosDatos.add(new Producto(Integer.parseInt(nextRecord[0]),nextRecord[1],Integer.parseInt(nextRecord[2]),0));
             }
             csvReader.close();
         } catch (FileNotFoundException ex) {

@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import modelo.BaseDatosCsv;
 
@@ -30,6 +31,8 @@ public class Aplicacion extends Application {
         ventanaCompra.VentasCompraControler(baseDeDatos,this);
         Scene scene = new Scene(parent);
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
+        
     }
 }

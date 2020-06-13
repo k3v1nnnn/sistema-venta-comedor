@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.VentanaConfiguracionProductoController">
+   <center>
+      <TableView fx:id="tablaDeProductos" onMouseClicked="#ProductoElegido" prefHeight="353.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn fx:id="columnaIdProducto" editable="false" prefWidth="75.0" sortable="false" text="id" />
+          <TableColumn fx:id="columnaNombreProducto" prefWidth="75.0" sortable="false" text="Nombre" />
+            <TableColumn fx:id="columnaPrecioProducto" prefWidth="75.0" sortable="false" text="Precio" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+   </center>
+   <left>
+      <VBox alignment="CENTER" prefHeight="559.0" prefWidth="300.0" spacing="20.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="nuevoProducto" mnemonicParsing="false" onAction="#nuevoProductoBoton" prefHeight="42.0" prefWidth="150.0" text="Nuevo">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="quitarProducto" mnemonicParsing="false" onAction="#quitarProductoBoton" prefHeight="22.0" prefWidth="151.0" text="Quitar">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            <Label graphicTextGap="0.0" text="Nombre del Producto" textAlignment="CENTER">
+               <font>
+                  <Font name="Arial" size="26.0" />
+               </font>
+            </Label>
+            <TextField fx:id="nombreProducto" prefHeight="40.0" prefWidth="300.0" promptText="Ejemplo: Milanesa">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </TextField>
+            <Label graphicTextGap="0.0" text="Precio del Producto" textAlignment="CENTER">
+               <font>
+                  <Font name="Arial" size="26.0" />
+               </font>
+            </Label>
+            <TextField fx:id="precioProducto" prefHeight="40.0" prefWidth="300.0" promptText="Ejemplo: 20">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </TextField>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                <Button fx:id="agregarProducto" mnemonicParsing="false" onAction="#agregarProductoBoton" prefHeight="14.0" prefWidth="150.0" text="Agregar">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="guardarProducto" mnemonicParsing="false" onAction="#guardarProductoBoton" prefHeight="0.0" prefWidth="150.0" text="Guardar">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </left>
+</BorderPane>

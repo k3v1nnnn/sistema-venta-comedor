@@ -11,7 +11,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -76,7 +75,7 @@ public class VentanaAgregarProductoController implements Initializable {
 
     @FXML
     private void obtenerProducto(MouseEvent event) {
-        if (event.getButton().equals(MouseButton.PRIMARY)) {
+        //event.getButton().equals(MouseButton.PRIMARY)
         int index = this.tablaDeProductos.getSelectionModel().getSelectedIndex();
         Producto producto = this.tablaDeProductos.getItems().get(index);
         producto.aumentarCantidad();
@@ -87,7 +86,6 @@ public class VentanaAgregarProductoController implements Initializable {
         }else{
             for (Node node : this.productosElegidos.getChildren()) {
                 ((ProductoElegido) node).actualizarProductoElegido();}
-        }
         }
     }
 }

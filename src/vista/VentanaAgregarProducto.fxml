@@ -7,19 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.VentanaAgregarProductoController">
-   <top>
-      <TableView fx:id="tablaDeProductos" editable="true" onMouseClicked="#obtenerProducto" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-        <columns>
-            <TableColumn fx:id="columnaCantidadProducto" prefWidth="152.0" sortable="false" text="Cantidad" />
-          <TableColumn fx:id="columnaNombreProducto" prefWidth="75.0" sortable="false" text="Nombre" />
-          <TableColumn fx:id="columnaPrecioProducto" prefWidth="147.0" sortable="false" text="Precio" />
-        </columns>
-         <columnResizePolicy>
-            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-         </columnResizePolicy>
-      </TableView>
-   </top>
+<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.VentanaAgregarProductoController">
    <bottom>
       <HBox alignment="CENTER" prefHeight="38.0" prefWidth="600.0" spacing="50.0" BorderPane.alignment="CENTER">
          <children>
@@ -37,10 +25,18 @@
       </HBox>
    </bottom>
    <center>
-      <ScrollPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <content>
-            <VBox fx:id="productosElegidos" prefHeight="163.0" prefWidth="588.0" />
-         </content>
-      </ScrollPane>
+      <TableView fx:id="tablaDeProductos" editable="true" onMouseClicked="#obtenerProducto" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <columns>
+            <TableColumn fx:id="columnaCantidadProducto" prefWidth="152.0" sortable="false" text="Cantidad" />
+          <TableColumn fx:id="columnaNombreProducto" prefWidth="75.0" sortable="false" text="Nombre" />
+          <TableColumn fx:id="columnaPrecioProducto" prefWidth="147.0" sortable="false" text="Precio" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
    </center>
+   <right>
+      <VBox fx:id="productosElegidos" alignment="TOP_CENTER" prefHeight="562.0" prefWidth="300.0" style="-fx-background-color: grey;" BorderPane.alignment="CENTER" />
+   </right>
 </BorderPane>

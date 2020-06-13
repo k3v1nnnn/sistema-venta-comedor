@@ -1,5 +1,6 @@
 package controlador;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Calendar;
 import java.util.ResourceBundle;
@@ -17,7 +18,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import modelo.BaseDatosCsv;
-import modelo.BaseDatosMongoDB;
 import modelo.Compra;
 import modelo.Producto;
 
@@ -52,6 +52,8 @@ public class VentanaCompraController implements Initializable {
     private Compra compra;
     private int montoDescuento;
     private Aplicacion ap;
+    @FXML
+    private Button configProducto;
 
   
     @Override
@@ -80,6 +82,7 @@ public class VentanaCompraController implements Initializable {
         ventanaAgregarProducto.VentanaAgregarProductoControler(stage,this.baseDatos,this.compra,this);
         Scene scene = new Scene(parent);
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 
@@ -94,6 +97,7 @@ public class VentanaCompraController implements Initializable {
         ventanaQuitarProducto.VentanaQuitarProductoControler(stage,this.compra,this);
         Scene scene = new Scene(parent);
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 
@@ -115,7 +119,7 @@ public class VentanaCompraController implements Initializable {
         this.actualizarVentana();
     }
     public void actualizarVentana(){
-        double subPrecio=this.compra.subTotalCompra();
+        int subPrecio=this.compra.subTotalCompra();
         this.subTotal.setText(subPrecio+"");
         this.descuento.setText(this.montoDescuento+"");
         this.total.setText(subPrecio-this.montoDescuento+"");
@@ -139,4 +143,20 @@ public class VentanaCompraController implements Initializable {
     private void abrirPagina(ActionEvent event) {
         this.ap.getHostServices().showDocument("https://github.com/k3v1nnnn/ventasComedor");
     }
+
+    @FXML
+    private void configProductoBoton(ActionEvent event) throws Exception {
+        Stage stage = new Stage();
+        stage.setTitle("Configuracion Producto");
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Aplicacion.class.getResource("/vista/VentanaConfiguracionProducto.fxml"));
+        Parent parent = loader.load();
+        VentanaConfiguracionProductoController ventanaConfiguracionProducto = loader.getController();
+        ventanaConfiguracionProducto.VentanaConfiguracionProductoController(stage,this.baseDatos);
+        Scene scene = new Scene(parent);
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.show();
+    }
+    
 }

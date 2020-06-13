@@ -52,7 +52,7 @@ public class BaseDatosMongoDB implements BaseDatos {
     public ArrayList<Producto> obtenerProductos(){
         ArrayList<Producto> productosDatos = new ArrayList<>();
         for (Document docu:this.productos.find()){
-            productosDatos.add(new Producto(docu.getString("nombre"),2,0));//docu.getInterger("precio")
+            productosDatos.add(new Producto(10,docu.getString("nombre"),2,0));//docu.getInterger("precio")
         }
         return productosDatos;
     }

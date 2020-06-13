@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
@@ -8,25 +9,28 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.VentanaCompraController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400.0" minWidth="600.0" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.VentanaCompraController">
    <top>
-      <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <ToolBar maxWidth="1.7976931348623157E308" prefHeight="50.0" prefWidth="800.0" BorderPane.alignment="CENTER">
         <items>
-          <Button mnemonicParsing="false" text="Inicio">
+          <Button fx:id="configProducto" mnemonicParsing="false" onAction="#configProductoBoton" text="Productos">
                <font>
                   <Font size="15.0" />
                </font></Button>
             <Separator orientation="VERTICAL" prefHeight="31.0" prefWidth="0.0" />
-            <Button disable="true" mnemonicParsing="false" text="Configuracion">
+            <Button mnemonicParsing="false" text="Ventas">
                <font>
                   <Font size="15.0" />
                </font></Button>
-            <Hyperlink fx:id="link" alignment="CENTER" onAction="#abrirPagina" text="Version 0.1" translateX="300.0" />
+            <Hyperlink fx:id="link" alignment="CENTER_RIGHT" onAction="#abrirPagina" scaleZ="0.0" text="Version 0.1" translateX="500.0">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets></Hyperlink>
         </items>
       </ToolBar>
    </top>
    <right>
-      <TableView fx:id="tablaProductos" prefHeight="360.0" prefWidth="247.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="tablaProductos" prefHeight="559.0" prefWidth="348.0" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn fx:id="cantidadColumna" editable="false" prefWidth="87.0" sortable="false" text="Cantidad" />
           <TableColumn fx:id="productoColumna" editable="false" prefWidth="95.0" sortable="false" text="Nombre" />
@@ -38,10 +42,10 @@
       </TableView>
    </right>
    <left>
-      <GridPane alignment="CENTER" prefHeight="360.0" prefWidth="352.0" BorderPane.alignment="CENTER">
+      <GridPane alignment="CENTER" layoutX="100.0" prefHeight="559.0" prefWidth="410.0" BorderPane.alignment="CENTER">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="205.0" minWidth="10.0" prefWidth="188.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="230.0" minWidth="10.0" prefWidth="188.0" />
         </columnConstraints>
         <rowConstraints>
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
