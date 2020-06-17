@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controlador;
 
 import java.net.URL;
@@ -29,7 +24,6 @@ public class VentanaConfiguracionProductoController implements Initializable {
     private Button quitarProducto;
     @FXML
     private TableView<Producto> tablaDeProductos;
-    @FXML
     private TableColumn<Producto,Integer> columnaIdProducto;
     @FXML
     private TableColumn<Producto,String> columnaNombreProducto;
@@ -39,14 +33,14 @@ public class VentanaConfiguracionProductoController implements Initializable {
     private TextField nombreProducto;
     @FXML
     private TextField precioProducto;
-    private BaseDatosCsv baseDeDatos;
-    private Stage stage;
-    private ArrayList<Producto> productos;
-    private Producto productoElegido;
     @FXML
     private Button guardarProducto;
     @FXML
     private Button nuevoProducto;
+    private BaseDatosCsv baseDeDatos;
+    private Stage stage;
+    private ArrayList<Producto> productos;
+    private Producto productoElegido;
 
     public void VentanaConfiguracionProductoController(Stage stage,BaseDatosCsv baseDeDatos){
         this.baseDeDatos=baseDeDatos;
@@ -62,7 +56,7 @@ public class VentanaConfiguracionProductoController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         this.columnaNombreProducto.setCellValueFactory(new PropertyValueFactory<Producto,String>("nombre"));
         this.columnaPrecioProducto.setCellValueFactory(new PropertyValueFactory<Producto,Integer>("precio"));
-        this.columnaIdProducto.setCellValueFactory(new PropertyValueFactory<Producto,Integer>("id"));
+        this.configurarBotonesProductoNuevo();
     }    
 
     @FXML
@@ -70,17 +64,22 @@ public class VentanaConfiguracionProductoController implements Initializable {
         if(!this.datosEstanVacios()){
             String nombre=this.nombreProducto.getText();
             int precio=Integer.parseInt(this.precioProducto.getText());
-            Producto nuevoProducto=new Producto(this.productos.size(),nombre,precio,0);
-            this.productos.add(nuevoProducto);
-            this.tablaDeProductos.getItems().add(nuevoProducto);
-            this.nombreProducto.setText(null);
-            this.precioProducto.setText(null);
+            Producto productoNuevo=new Producto(nombre,precio,0);
+            this.productos.add(productoNuevo);
+            this.tablaDeProductos.getItems().add(productoNuevo);
+            this.baseDeDatos.agregarProducto(nombre, precio);
+            this.limpiarCamposTexto();
         }
     }
         
 
     @FXML
     private void quitarProductoBoton(ActionEvent event) {
+        this.tablaDeProductos.getItems().remove(this.productoElegido);
+        this.productos.remove(this.productoElegido);
+        this.baseDeDatos.guardarProductos(this.productos);
+        this.limpiarCamposTexto();
+        this.configurarBotonesProductoNuevo();
     }
 
 
@@ -95,20 +94,39 @@ public class VentanaConfiguracionProductoController implements Initializable {
         this.quitarProducto.setDisable(false);
     }
     
-    private boolean datosEstanVacios(){
-        return (this.precioProducto.getText().isEmpty())&&(this.nombreProducto.getText().isEmpty());
-    }
-
     @FXML
     private void guardarProductoBoton(ActionEvent event) {
+        if(!this.datosEstanVacios()){
+            String nombre=this.nombreProducto.getText();
+            int precio=Integer.parseInt(this.precioProducto.getText());
+            this.productoElegido.setNombre(nombre);
+            this.productoElegido.setPrecio(precio);
+            this.productoElegido=null;
+            this.baseDeDatos.guardarProductos(this.productos);
+            this.limpiarCamposTexto();
+            this.configurarBotonesProductoNuevo();
+        }
     }
 
     @FXML
     private void nuevoProductoBoton(ActionEvent event) {
+        this.configurarBotonesProductoNuevo();
+    }
+    
+    private void configurarBotonesProductoNuevo(){
         this.nombreProducto.setText(null);
         this.precioProducto.setText(null);
         this.quitarProducto.setDisable(true);
         this.guardarProducto.setDisable(true);
         this.agregarProducto.setDisable(false);
+    }
+    
+    private void limpiarCamposTexto(){
+        this.nombreProducto.setText(null);
+        this.precioProducto.setText(null);
+    }
+    
+    private boolean datosEstanVacios(){
+        return (this.precioProducto.getText()==null)||(this.nombreProducto.getText()==null);
     }
 }

@@ -17,7 +17,6 @@ public class Aplicacion extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        //BaseDatosMongoDB baseDeDatos = new BaseDatosMongoDB();
         BaseDatosCsv baseDeDatos2=new BaseDatosCsv();
         this.cargarInicio(baseDeDatos2,stage);
     }
@@ -32,7 +31,6 @@ public class Aplicacion extends Application {
         Scene scene = new Scene(parent);
         stage.setScene(scene);
         stage.setResizable(false);
-        stage.show();
-        
+        stage.show(); 
     }
 }

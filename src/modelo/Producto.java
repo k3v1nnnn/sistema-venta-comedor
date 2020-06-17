@@ -10,30 +10,25 @@ public class Producto {
     private StringProperty nombre;
     private IntegerProperty precio;
     private boolean nuevoEnTabla;
-    private IntegerProperty id;
     
-    public Producto(int nuevoId,String nuevoNombre,int nuevoPrecio,int nuevaCantidad){
+    public Producto(String nuevoNombre,int nuevoPrecio,int nuevaCantidad){
         this.cantidad=new SimpleIntegerProperty(nuevaCantidad);
         this.nombre=new SimpleStringProperty(nuevoNombre);
         this.precio=new SimpleIntegerProperty(nuevoPrecio);
-        this.id=new SimpleIntegerProperty(nuevoId);
         this.nuevoEnTabla=false;
     }
     public StringProperty nombreProperty() {return this.nombre;};
     public IntegerProperty precioProperty() {return this.precio;};
     public IntegerProperty cantidadProperty() {return this.cantidad;};
-    public IntegerProperty idProperty() {return this.id;};
     
     public String getNombre() {return this.nombre.get();}
     public int getPrecio() {return this.precio.get();}
     public int getCantidad() {return this.cantidad.get();}
-    public int getId() {return this.id.get();}
     
     
     public void setNombre(String nombre) {this.nombre.set(nombre);}
     public void setPrecio(int precio) {this.precio.set(precio);}
     public void setCantidad(int cantidad) {this.cantidad.set(cantidad);}
-    public void setId(int id) {this.id.set(id);}
     
     
     public boolean estaVacio(){return this.cantidad.get()==0;}

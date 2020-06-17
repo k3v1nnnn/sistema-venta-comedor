@@ -1,6 +1,5 @@
 package controlador;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.Calendar;
 import java.util.ResourceBundle;
@@ -20,7 +19,7 @@ import javafx.stage.Stage;
 import modelo.BaseDatosCsv;
 import modelo.Compra;
 import modelo.Producto;
-
+import modelo.Reporte;
 
 public class VentanaCompraController implements Initializable {
 
@@ -48,14 +47,13 @@ public class VentanaCompraController implements Initializable {
     private Button cancelarPedido;
     @FXML
     private Hyperlink link;
+    @FXML
+    private Button configProducto;
     private BaseDatosCsv baseDatos;
     private Compra compra;
     private int montoDescuento;
     private Aplicacion ap;
-    @FXML
-    private Button configProducto;
-
-  
+   
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.productoColumna.setCellValueFactory(new PropertyValueFactory<Producto,String>("nombre"));
@@ -64,8 +62,8 @@ public class VentanaCompraController implements Initializable {
         this.montoDescuento=0;
         this.compra=new Compra();
         this.actualizarVentana();
-        
     }
+    
     public void VentasCompraControler(BaseDatosCsv baseDeDatos,Aplicacion app){
         this.baseDatos=baseDeDatos;
         this.ap=app;
@@ -107,10 +105,16 @@ public class VentanaCompraController implements Initializable {
         int dia = hoy.get(Calendar.DATE);
         int mes = hoy.get(Calendar.MONTH)+1;
         int ano = hoy.get(Calendar.YEAR);
+        int hora=hoy.get(Calendar.HOUR);
+        int minuto=hoy.get(Calendar.MINUTE);
+        int sec=hoy.get(Calendar.SECOND);
+        int am_pm=hoy.get(Calendar.AM_PM);
         int precioTotal=this.compra.subTotalCompra()-this.montoDescuento;
         //this.baseDatos.agregarVenta(dia, mes, ano, precioTotal);
         this.compra=new Compra();
         this.actualizarVentana();
+        //Reporte report=new Reporte();
+        //report.lanzarReporte("222");
     }
 
     @FXML

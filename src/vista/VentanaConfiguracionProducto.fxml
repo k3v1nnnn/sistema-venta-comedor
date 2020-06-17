@@ -12,7 +12,6 @@
    <center>
       <TableView fx:id="tablaDeProductos" onMouseClicked="#ProductoElegido" prefHeight="353.0" prefWidth="600.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn fx:id="columnaIdProducto" editable="false" prefWidth="75.0" sortable="false" text="id" />
           <TableColumn fx:id="columnaNombreProducto" prefWidth="75.0" sortable="false" text="Nombre" />
             <TableColumn fx:id="columnaPrecioProducto" prefWidth="75.0" sortable="false" text="Precio" />
         </columns>

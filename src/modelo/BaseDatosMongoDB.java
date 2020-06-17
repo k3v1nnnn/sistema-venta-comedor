@@ -8,7 +8,7 @@ import com.mongodb.client.MongoDatabase;
 import java.util.ArrayList;
 import org.bson.Document;
 
-public class BaseDatosMongoDB implements BaseDatos {
+public class BaseDatosMongoDB {
     private final MongoClient cliente;
     private final MongoDatabase bdCliente;
     private final MongoCollection<Document> productos;
@@ -21,7 +21,6 @@ public class BaseDatosMongoDB implements BaseDatos {
         this.ventas=this.bdCliente.getCollection("ventas");
     }
     
-    @Override
     public void modificarProducto(String nombre,int precio) {
 		Document filterDoc = new Document("nombre", nombre);
 		filterDoc.append("precio", precio);
@@ -32,14 +31,14 @@ public class BaseDatosMongoDB implements BaseDatos {
                     System.out.print("nada");
                 }
     }
-    @Override
+
     public void agregarProducto(String nombre,int precio) {
 		Document newDoc = new Document();
 		newDoc.put("nombre", nombre);
 		newDoc.append("precio", precio);
 		this.productos.insertOne(newDoc);
     }
-    @Override
+
     public void agregarVenta(int dia,int mes,int annio,double precio){
         Document newDocu=new Document();
         newDocu.put("dia",dia);
@@ -48,11 +47,11 @@ public class BaseDatosMongoDB implements BaseDatos {
         newDocu.append("precio",precio);
         this.ventas.insertOne(newDocu);
     }
-    @Override
+    
     public ArrayList<Producto> obtenerProductos(){
         ArrayList<Producto> productosDatos = new ArrayList<>();
         for (Document docu:this.productos.find()){
-            productosDatos.add(new Producto(10,docu.getString("nombre"),2,0));//docu.getInterger("precio")
+            productosDatos.add(new Producto(docu.getString("nombre"),0,0));//docu.getDouble("precio")
         }
         return productosDatos;
     }

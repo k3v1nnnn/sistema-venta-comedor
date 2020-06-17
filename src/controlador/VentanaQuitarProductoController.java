@@ -42,7 +42,7 @@ public class VentanaQuitarProductoController implements Initializable {
         this.aux=new ArrayList<Producto>();
         ArrayList<Producto> listaProductos=this.compra.productos();
         for (Producto prod:listaProductos){
-            this.aux.add(new Producto(10,prod.getNombre(),prod.getPrecio(),prod.getCantidad()));
+            this.aux.add(new Producto(prod.getNombre(),prod.getPrecio(),prod.getCantidad()));
             this.tablaProductos.getItems().add(prod);
         }
         this.ventanaCompra=ventanaCompra;
