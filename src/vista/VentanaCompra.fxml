@@ -44,59 +44,79 @@
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="230.0" minWidth="10.0" prefWidth="188.0" />
         </columnConstraints>
         <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="87.0" minHeight="0.0" prefHeight="44.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="270.0" minHeight="10.0" prefHeight="90.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="270.0" minHeight="10.0" prefHeight="90.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="270.0" minHeight="10.0" prefHeight="90.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="270.0" minHeight="10.0" prefHeight="90.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="270.0" minHeight="10.0" prefHeight="90.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="agregarProducto" contentDisplay="CENTER" mnemonicParsing="false" onAction="#agregarProductoBoton" text="Agregar Producto" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <Button fx:id="agregarProducto" contentDisplay="CENTER" mnemonicParsing="false" onAction="#agregarProductoBoton" text="Agregar Producto" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <font>
                   <Font size="16.0" />
                </font></Button>
-            <Button fx:id="sacarProducto" mnemonicParsing="false" onAction="#sacarProductoBoton" text="Sacar Producto" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <Button fx:id="sacarProducto" mnemonicParsing="false" onAction="#sacarProductoBoton" text="Sacar Producto" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <font>
                   <Font size="16.0" />
                </font></Button>
-            <Button fx:id="aceptarPedido" mnemonicParsing="false" onAction="#aceptarPedidoBoton" text="Aceptar Pedido" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+            <Button fx:id="aceptarPedido" mnemonicParsing="false" onAction="#aceptarPedidoBoton" text="Aceptar Pedido" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                <font>
                   <Font size="16.0" />
                </font></Button>
-            <Button fx:id="cancelarPedido" mnemonicParsing="false" onAction="#cancelarPedidoBoton" text="Cancelar Pedido" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+            <Button fx:id="cancelarPedido" mnemonicParsing="false" onAction="#cancelarPedidoBoton" text="Cancelar Pedido" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5">
                <font>
                   <Font size="16.0" />
                </font></Button>
-            <Label text="SubTotal:" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+            <Label text="SubTotal:" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                <font>
                   <Font size="25.0" />
                </font>
             </Label>
-            <Label text="Descuento:" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+            <Label text="Descuento:" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                <font>
                   <Font size="25.0" />
                </font>
             </Label>
-            <Label text="Total:" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+            <Label text="Total:" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                <font>
                   <Font size="25.0" />
                </font>
             </Label>
-            <Label fx:id="subTotal" textFill="#34ff00" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+            <Label fx:id="subTotal" textFill="#34ff00" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                <font>
                   <Font size="25.0" />
                </font>
             </Label>
-            <Label fx:id="descuento" textFill="RED" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+            <Label fx:id="descuento" textFill="RED" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                <font>
                   <Font size="25.0" />
                </font>
             </Label>
-            <Label fx:id="total" textFill="#34ff00" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+            <Label fx:id="total" textFill="#34ff00" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                <font>
                   <Font size="25.0" />
                </font>
             </Label>
+            <Label fx:id="fecha" contentDisplay="CENTER" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+               <children>
+                  <Label prefHeight="36.0" prefWidth="49.0" text="Ticket:">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="numeroTicket" prefHeight="31.0" prefWidth="53.0">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
          </children>
       </GridPane>
    </left>

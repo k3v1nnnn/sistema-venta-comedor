@@ -77,15 +77,17 @@ public class VentanaAgregarProductoController implements Initializable {
     private void obtenerProducto(MouseEvent event) {
         //event.getButton().equals(MouseButton.PRIMARY)
         int index = this.tablaDeProductos.getSelectionModel().getSelectedIndex();
-        Producto producto = this.tablaDeProductos.getItems().get(index);
-        producto.aumentarCantidad();
-        if(!producto.estaEnTabla()){
-            this.productosElegidos.getChildren().add(new ProductoElegido(producto));
-            this.filtrarProductos.add(producto);
-            producto.enTabla();
-        }else{
-            for (Node node : this.productosElegidos.getChildren()) {
-                ((ProductoElegido) node).actualizarProductoElegido();}
+        if(index!=-1){
+            Producto producto = this.tablaDeProductos.getItems().get(index);
+            producto.aumentarCantidad();
+            if(!producto.estaEnTabla()){
+                this.productosElegidos.getChildren().add(new ProductoElegido(producto));
+                this.filtrarProductos.add(producto);
+                producto.enTabla();
+            }else{
+                for (Node node : this.productosElegidos.getChildren()) {
+                    ((ProductoElegido) node).actualizarProductoElegido();}
+            }
         }
     }
 }

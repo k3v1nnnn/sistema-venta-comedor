@@ -60,9 +60,11 @@ public class VentanaQuitarProductoController implements Initializable {
     @FXML
     private void sacarProducto(MouseEvent event) {
         if (event.getButton().equals(MouseButton.PRIMARY)) {
-        int index = this.tablaProductos.getSelectionModel().getSelectedIndex();
-        Producto producto = this.tablaProductos.getItems().get(index);
-        producto.disminuirCantidad();
+            int index = this.tablaProductos.getSelectionModel().getSelectedIndex();
+            if(index!=-1){
+                Producto producto = this.tablaProductos.getItems().get(index);
+                producto.disminuirCantidad();
+            }
         }
     }
 

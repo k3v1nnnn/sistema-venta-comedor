@@ -86,12 +86,14 @@ public class VentanaConfiguracionProductoController implements Initializable {
     @FXML
     private void ProductoElegido(MouseEvent event) {
         int index = this.tablaDeProductos.getSelectionModel().getSelectedIndex();
-        this.productoElegido = this.tablaDeProductos.getItems().get(index);
-        this.nombreProducto.setText(this.productoElegido.getNombre());
-        this.precioProducto.setText(String.valueOf(this.productoElegido.getPrecio()));
-        this.guardarProducto.setDisable(false);
-        this.agregarProducto.setDisable(true);
-        this.quitarProducto.setDisable(false);
+        if(index!=-1){
+            this.productoElegido = this.tablaDeProductos.getItems().get(index);
+            this.nombreProducto.setText(this.productoElegido.getNombre());
+            this.precioProducto.setText(String.valueOf(this.productoElegido.getPrecio()));
+            this.guardarProducto.setDisable(false);
+            this.agregarProducto.setDisable(true);
+            this.quitarProducto.setDisable(false);
+        }
     }
     
     @FXML

@@ -1,7 +1,13 @@
 package controlador;
 
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,6 +20,7 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import modelo.BaseDatosCsv;
@@ -49,17 +56,24 @@ public class VentanaCompraController implements Initializable {
     private Hyperlink link;
     @FXML
     private Button configProducto;
+    @FXML
+    private Label fecha;
+    @FXML
+    private TextField numeroTicket;
     private BaseDatosCsv baseDatos;
     private Compra compra;
     private int montoDescuento;
     private Aplicacion ap;
-   
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.productoColumna.setCellValueFactory(new PropertyValueFactory<Producto,String>("nombre"));
         this.precioColumna.setCellValueFactory(new PropertyValueFactory<Producto,Integer>("precio"));
         this.cantidadColumna.setCellValueFactory(new PropertyValueFactory<Producto,Integer>("cantidad"));
         this.montoDescuento=0;
+        int numero=1;
+        this.numeroTicket.setText(Integer.toString(numero));
+        this.fecha.setText(this.fecha());
         this.compra=new Compra();
         this.actualizarVentana();
     }
@@ -101,20 +115,24 @@ public class VentanaCompraController implements Initializable {
 
     @FXML
     private void aceptarPedidoBoton(ActionEvent event) {
-        Calendar hoy = Calendar.getInstance();
-        int dia = hoy.get(Calendar.DATE);
-        int mes = hoy.get(Calendar.MONTH)+1;
-        int ano = hoy.get(Calendar.YEAR);
-        int hora=hoy.get(Calendar.HOUR);
-        int minuto=hoy.get(Calendar.MINUTE);
-        int sec=hoy.get(Calendar.SECOND);
-        int am_pm=hoy.get(Calendar.AM_PM);
+        String fecha=this.fechaDeLaCompra();
+        System.out.print(fecha);
         int precioTotal=this.compra.subTotalCompra()-this.montoDescuento;
         //this.baseDatos.agregarVenta(dia, mes, ano, precioTotal);
+        Reporte report=new Reporte();
+        Map param=new HashMap<String,Object>();
+        param.put("fecha", fecha);
+        param.put("numTicket", "hola");
+        List<String> cantidad=Arrays.asList("2","3","4","5");
+        param.put("cantidad",cantidad);
+        List<String> precio=Arrays.asList("2","3","4","5");
+        param.put("precio",precio);
+        List<String> producto=Arrays.asList("2","3","4","5");
+        param.put("producto",producto);
+        param.put("total", "20");
+        report.lanzarReporte(param);
         this.compra=new Compra();
         this.actualizarVentana();
-        //Reporte report=new Reporte();
-        //report.lanzarReporte("222");
     }
 
     @FXML
@@ -162,5 +180,13 @@ public class VentanaCompraController implements Initializable {
         stage.setResizable(false);
         stage.show();
     }
+    public String fechaDeLaCompra(){
+        Calendar hoy = Calendar.getInstance();
+        return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(hoy.getTime());
+    }
     
+    public String fecha(){
+        Calendar hoy = Calendar.getInstance();
+        return new SimpleDateFormat("yyyy-MM-dd").format(hoy.getTime());
+    }
 }
