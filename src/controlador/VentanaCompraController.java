@@ -2,11 +2,7 @@ package controlador;
 
 import java.net.URL;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -120,18 +116,14 @@ public class VentanaCompraController implements Initializable {
         int precioTotal=this.compra.subTotalCompra()-this.montoDescuento;
         //this.baseDatos.agregarVenta(dia, mes, ano, precioTotal);
         Reporte report=new Reporte();
-        Map param=new HashMap<String,Object>();
+        Map param=this.compra.impresionDeLaCompra();
         param.put("fecha", fecha);
-        param.put("numTicket", "hola");
-        List<String> cantidad=Arrays.asList("2","3","4","5");
-        param.put("cantidad",cantidad);
-        List<String> precio=Arrays.asList("2","3","4","5");
-        param.put("precio",precio);
-        List<String> producto=Arrays.asList("2","3","4","5");
-        param.put("producto",producto);
-        param.put("total", "20");
+        param.put("numTicket", Integer.toString(1));
         report.lanzarReporte(param);
         this.compra=new Compra();
+        int cantidad1= Integer.parseInt(this.numeroTicket.getText());
+        cantidad1=cantidad1+1;
+        this.numeroTicket.setText(Integer.toString(cantidad1));
         this.actualizarVentana();
     }
 

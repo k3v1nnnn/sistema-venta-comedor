@@ -86,6 +86,7 @@ public class VentanaConfiguracionProductoController implements Initializable {
     @FXML
     private void ProductoElegido(MouseEvent event) {
         int index = this.tablaDeProductos.getSelectionModel().getSelectedIndex();
+        this.tablaDeProductos.getSelectionModel().clearSelection();
         if(index!=-1){
             this.productoElegido = this.tablaDeProductos.getItems().get(index);
             this.nombreProducto.setText(this.productoElegido.getNombre());

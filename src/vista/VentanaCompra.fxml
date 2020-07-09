@@ -110,7 +110,7 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="numeroTicket" prefHeight="31.0" prefWidth="53.0">
+                  <TextField fx:id="numeroTicket" prefHeight="31.0" prefWidth="47.0">
                      <font>
                         <Font size="15.0" />
                      </font>

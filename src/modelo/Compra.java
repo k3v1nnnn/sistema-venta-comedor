@@ -1,6 +1,10 @@
 package modelo;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Compra {
     private ArrayList<Producto> listaDeProductos;
@@ -45,5 +49,22 @@ public class Compra {
     
     public void reemplazarProductos(ArrayList<Producto> nuevo){
         this.listaDeProductos=nuevo;
+    }
+    
+    public Map impresionDeLaCompra(){
+        Map param=new HashMap<String,Object>();
+        List<String> cantidad=new ArrayList<>();
+        List<String> precio=new ArrayList<>();
+        List<String> productos=new ArrayList<>();
+        for(Producto producto:this.listaDeProductos){
+            cantidad.add(Integer.toString(producto.getCantidad()));
+            precio.add(Integer.toString(producto.getPrecio()));
+            productos.add(producto.getNombre());
+        }
+        param.put("precio",precio);
+        param.put("producto",productos);
+        param.put("cantidad",cantidad);
+        param.put("total", this.subTotalCompra()+"");
+        return param;
     }
 }

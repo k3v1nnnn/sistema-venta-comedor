@@ -61,6 +61,7 @@ public class VentanaQuitarProductoController implements Initializable {
     private void sacarProducto(MouseEvent event) {
         if (event.getButton().equals(MouseButton.PRIMARY)) {
             int index = this.tablaProductos.getSelectionModel().getSelectedIndex();
+            this.tablaProductos.getSelectionModel().clearSelection();
             if(index!=-1){
                 Producto producto = this.tablaProductos.getItems().get(index);
                 producto.disminuirCantidad();

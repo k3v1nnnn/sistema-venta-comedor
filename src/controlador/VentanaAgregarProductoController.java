@@ -77,6 +77,7 @@ public class VentanaAgregarProductoController implements Initializable {
     private void obtenerProducto(MouseEvent event) {
         //event.getButton().equals(MouseButton.PRIMARY)
         int index = this.tablaDeProductos.getSelectionModel().getSelectedIndex();
+        this.tablaDeProductos.getSelectionModel().clearSelection();
         if(index!=-1){
             Producto producto = this.tablaDeProductos.getItems().get(index);
             producto.aumentarCantidad();
