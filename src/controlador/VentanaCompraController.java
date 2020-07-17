@@ -1,9 +1,11 @@
 package controlador;
 
 import java.net.URL;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Map;
+import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,6 +20,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.InputMethodEvent;
 import javafx.stage.Stage;
 import modelo.BaseDatosCsv;
 import modelo.Compra;
@@ -59,24 +62,40 @@ public class VentanaCompraController implements Initializable {
     private BaseDatosCsv baseDatos;
     private Compra compra;
     private int montoDescuento;
-    private Aplicacion ap;
+    private Aplicacion aplicacion;
+    private int numeroDeTicket;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.productoColumna.setCellValueFactory(new PropertyValueFactory<Producto,String>("nombre"));
         this.precioColumna.setCellValueFactory(new PropertyValueFactory<Producto,Integer>("precio"));
         this.cantidadColumna.setCellValueFactory(new PropertyValueFactory<Producto,Integer>("cantidad"));
+        this.baseDatos=new BaseDatosCsv();
         this.montoDescuento=0;
-        int numero=1;
-        this.numeroTicket.setText(Integer.toString(numero));
         this.fecha.setText(this.fecha());
+        this.informacionDeTicket(this.baseDatos.obtenerUltimaFecha());
+        this.numeroTicket.setText(Integer.toString(this.numeroDeTicket));
         this.compra=new Compra();
         this.actualizarVentana();
     }
-    
-    public void VentasCompraControler(BaseDatosCsv baseDeDatos,Aplicacion app){
-        this.baseDatos=baseDeDatos;
-        this.ap=app;
+    public void informacionDeTicket(ArrayList<String> informacion){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        try{
+            Date primeraFecha = sdf.parse(this.fecha());
+            Date segundaFecha = sdf.parse(informacion.get(0));
+            if(primeraFecha.compareTo(segundaFecha)==0){
+                this.numeroDeTicket=Integer.parseInt(informacion.get(1))+1;
+            }else{
+                this.numeroDeTicket=1;
+            }
+        }catch(ParseException e){
+            this.numeroDeTicket=1;
+        }
+        
+        
+    }
+    public void VentasCompraControler(Aplicacion app){
+        this.aplicacion=app;
     }
 
     @FXML
@@ -112,18 +131,19 @@ public class VentanaCompraController implements Initializable {
     @FXML
     private void aceptarPedidoBoton(ActionEvent event) {
         String fecha=this.fechaDeLaCompra();
-        System.out.print(fecha);
         int precioTotal=this.compra.subTotalCompra()-this.montoDescuento;
-        //this.baseDatos.agregarVenta(dia, mes, ano, precioTotal);
-        Reporte report=new Reporte();
-        Map param=this.compra.impresionDeLaCompra();
-        param.put("fecha", fecha);
-        param.put("numTicket", Integer.toString(1));
-        report.lanzarReporte(param);
+        int numero=Integer.parseInt(this.numeroTicket.getText());
+        //Reporte report=new Reporte();
+        //Map param=this.compra.impresionDeLaCompra();
+        //param.put("fecha", fecha);
+        //param.put("numTicket", Integer.toString(numero));
+        //report.lanzarReporte(param);
+        if(this.noCambioElNumeroDeTicket(numero)){
+            this.baseDatos.agregarFecha(this.fecha.getText(), numero);
+            this.numeroDeTicket=this.numeroDeTicket+1;
+        }
         this.compra=new Compra();
-        int cantidad1= Integer.parseInt(this.numeroTicket.getText());
-        cantidad1=cantidad1+1;
-        this.numeroTicket.setText(Integer.toString(cantidad1));
+        this.numeroTicket.setText(Integer.toString(this.numeroDeTicket));
         this.actualizarVentana();
     }
 
@@ -155,7 +175,7 @@ public class VentanaCompraController implements Initializable {
 
     @FXML
     private void abrirPagina(ActionEvent event) {
-        this.ap.getHostServices().showDocument("https://github.com/k3v1nnnn/ventasComedor");
+        this.aplicacion.getHostServices().showDocument("https://github.com/k3v1nnnn/ventasComedor");
     }
 
     @FXML
@@ -180,5 +200,8 @@ public class VentanaCompraController implements Initializable {
     public String fecha(){
         Calendar hoy = Calendar.getInstance();
         return new SimpleDateFormat("yyyy-MM-dd").format(hoy.getTime());
+    }
+    public boolean noCambioElNumeroDeTicket(int unNumero){
+        return this.numeroDeTicket==unNumero;
     }
 }

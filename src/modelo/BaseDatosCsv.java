@@ -14,8 +14,10 @@ import java.util.logging.Logger;
 
 public class BaseDatosCsv{
     private final String nombreArchivoComida;
+    private final String nombreArchivoFecha;
     public BaseDatosCsv(){
         this.nombreArchivoComida="datos/comidas.csv";
+        this.nombreArchivoFecha="datos/fecha.csv";
     }
     
     public void agregarProducto(String nombre, int precio) {
@@ -31,10 +33,6 @@ public class BaseDatosCsv{
         }
     }
 
-    public void agregarVenta(int dia, int mes, int annio, double precio) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
     public void guardarProductos(ArrayList<Producto> productos){
         try {
             CSVWriter csvWriter = new CSVWriter(new FileWriter(this.nombreArchivoComida));
@@ -69,5 +67,36 @@ public class BaseDatosCsv{
         }
         return productosDatos;
     }
-    
+    public ArrayList<String> obtenerUltimaFecha(){
+        ArrayList<ArrayList<String>> fechas=new ArrayList<>();
+        try {
+            CSVReader csvReader = new CSVReader(new FileReader(this.nombreArchivoFecha));
+            csvReader.skip(1);
+            String[] nextRecord;
+            while ((nextRecord = csvReader.readNext()) != null) {
+                ArrayList<String> fecha=new ArrayList<>();
+                fecha.add(nextRecord[0]);
+                fecha.add(nextRecord[1]);
+                fechas.add(fecha);
+            }
+            csvReader.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(BaseDatosCsv.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException | CsvValidationException ex) {
+            Logger.getLogger(BaseDatosCsv.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return fechas.get(fechas.size()-1);
+    }
+    public void agregarFecha(String fecha, int numero) {
+        try {
+            CSVWriter csvWriter = new CSVWriter(new FileWriter(this.nombreArchivoFecha,true));
+            String[] nuevaFecha = {fecha,String.valueOf(numero)}; 
+            csvWriter.writeNext(nuevaFecha);
+            csvWriter.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(BaseDatosCsv.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(BaseDatosCsv.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
