@@ -15,11 +15,46 @@ import java.util.logging.Logger;
 public class BaseDatosCsv{
     private final String nombreArchivoComida;
     private final String nombreArchivoFecha;
+    private final String nombreArchivoConfiguracion;
     public BaseDatosCsv(){
         this.nombreArchivoComida="datos/comidas.csv";
         this.nombreArchivoFecha="datos/fecha.csv";
+        this.nombreArchivoConfiguracion="datos/config.csv";
     }
     
+    public ArrayList<String> obtenerUltimaConfiguracion(){
+        ArrayList<ArrayList<String>> configs=new ArrayList<>();
+        try {
+            CSVReader csvReader = new CSVReader(new FileReader(this.nombreArchivoConfiguracion));
+            csvReader.skip(1);
+            String[] nextRecord;
+            while ((nextRecord = csvReader.readNext()) != null) {
+                ArrayList<String> config=new ArrayList<>();
+                config.add(nextRecord[0]);
+                config.add(nextRecord[1]);
+                configs.add(config);
+            }
+            csvReader.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(BaseDatosCsv.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException | CsvValidationException ex) {
+            Logger.getLogger(BaseDatosCsv.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return configs.get(configs.size()-1);
+    }
+    
+    public void agregarConfiguracion(String nombre, int valor) {
+        try {
+            CSVWriter csvWriter = new CSVWriter(new FileWriter(this.nombreArchivoConfiguracion,true));
+            String[] productoNuevo = {nombre,String.valueOf(valor)}; 
+            csvWriter.writeNext(productoNuevo);
+            csvWriter.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(BaseDatosCsv.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(BaseDatosCsv.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     public void agregarProducto(String nombre, int precio) {
         try {
             CSVWriter csvWriter = new CSVWriter(new FileWriter(this.nombreArchivoComida,true));
@@ -87,6 +122,7 @@ public class BaseDatosCsv{
         }
         return fechas.get(fechas.size()-1);
     }
+    
     public void agregarFecha(String fecha, int numero) {
         try {
             CSVWriter csvWriter = new CSVWriter(new FileWriter(this.nombreArchivoFecha,true));

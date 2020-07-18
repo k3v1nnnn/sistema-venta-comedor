@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,13 +15,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.InputMethodEvent;
 import javafx.stage.Stage;
 import modelo.BaseDatosCsv;
 import modelo.Compra;
@@ -52,8 +51,6 @@ public class VentanaCompraController implements Initializable {
     @FXML
     private Button cancelarPedido;
     @FXML
-    private Hyperlink link;
-    @FXML
     private Button configProducto;
     @FXML
     private Label fecha;
@@ -64,6 +61,8 @@ public class VentanaCompraController implements Initializable {
     private int montoDescuento;
     private Aplicacion aplicacion;
     private int numeroDeTicket;
+    @FXML
+    private Button impresora;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -133,11 +132,11 @@ public class VentanaCompraController implements Initializable {
         String fecha=this.fechaDeLaCompra();
         int precioTotal=this.compra.subTotalCompra()-this.montoDescuento;
         int numero=Integer.parseInt(this.numeroTicket.getText());
-        //Reporte report=new Reporte();
-        //Map param=this.compra.impresionDeLaCompra();
-        //param.put("fecha", fecha);
-        //param.put("numTicket", Integer.toString(numero));
-        //report.lanzarReporte(param);
+        Reporte report=new Reporte();
+        Map param=this.compra.impresionDeLaCompra();
+        param.put("fecha", fecha);
+        param.put("numTicket", Integer.toString(numero));
+        report.lanzarReporte(param,this.baseDatos.obtenerUltimaConfiguracion());
         if(this.noCambioElNumeroDeTicket(numero)){
             this.baseDatos.agregarFecha(this.fecha.getText(), numero);
             this.numeroDeTicket=this.numeroDeTicket+1;
@@ -174,11 +173,6 @@ public class VentanaCompraController implements Initializable {
     }
 
     @FXML
-    private void abrirPagina(ActionEvent event) {
-        this.aplicacion.getHostServices().showDocument("https://github.com/k3v1nnnn/ventasComedor");
-    }
-
-    @FXML
     private void configProductoBoton(ActionEvent event) throws Exception {
         Stage stage = new Stage();
         stage.setTitle("Configuracion Producto");
@@ -203,5 +197,20 @@ public class VentanaCompraController implements Initializable {
     }
     public boolean noCambioElNumeroDeTicket(int unNumero){
         return this.numeroDeTicket==unNumero;
+    }
+
+    @FXML
+    private void impresoraImpresion(ActionEvent event) throws Exception {
+        Stage stage = new Stage();
+        stage.setTitle("Impresoras");
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(Aplicacion.class.getResource("/vista/VentanaConfiguracionImpresora.fxml"));
+        Parent parent = loader.load();
+        VentanaConfiguracionImpresoraController ventanaConfiguracionImpresora = loader.getController();
+        ventanaConfiguracionImpresora.VentanaConfiguracionImpresoraController(stage,this.baseDatos);
+        Scene scene = new Scene(parent);
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.show();
     }
 }

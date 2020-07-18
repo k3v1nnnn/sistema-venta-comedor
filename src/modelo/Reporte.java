@@ -1,31 +1,66 @@
 package modelo;
 
-import java.awt.Desktop;
-import java.io.File;
-import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Map;
+import javax.print.PrintService;
+import javax.print.PrintServiceLookup;
+import javax.print.attribute.HashPrintRequestAttributeSet;
+import javax.print.attribute.HashPrintServiceAttributeSet;
+import javax.print.attribute.PrintRequestAttributeSet;
+import javax.print.attribute.PrintServiceAttributeSet;
+import javax.print.attribute.standard.Copies;
+import javax.print.attribute.standard.MediaSizeName;
+import javax.print.attribute.standard.OrientationRequested;
+import javax.print.attribute.standard.PrinterName;
 import net.sf.jasperreports.engine.JREmptyDataSource;
 import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.export.JRPrintServiceExporter;
+import net.sf.jasperreports.export.SimpleExporterInput;
+import net.sf.jasperreports.export.SimplePrintServiceExporterConfiguration;
 
 public class Reporte {
     private final String ticket;
-    private final String guardarTicket;
     public Reporte(){
         this.ticket="reporte/esqueletoTicket.jasper";
-        this.guardarTicket="reporte/ticket2.pdf";
     }
-    public void lanzarReporte(Map parametros){
+    public void lanzarReporte(Map parametros, ArrayList<String> configs){
+        JasperPrint jp=null;
+        String nombreImpresora=configs.get(0);
+        int posicionImpresora=Integer.parseInt(configs.get(1));
         try {
-          JasperPrint jp =JasperFillManager.fillReport(this.ticket, parametros,new JREmptyDataSource());
-          JasperExportManager.exportReportToPdfFile(jp,this.guardarTicket);
-          //JasperViewer.viewReport(jp, false);
+          jp =JasperFillManager.fillReport(this.ticket, parametros,new JREmptyDataSource());
         }
         catch (JRException error) {
             System.out.print("Error");
         }
+        PrintService[] services = PrintServiceLookup.lookupPrintServices(null, null);
+        PrintService selecService = services[posicionImpresora];
+        PrintRequestAttributeSet printRequestAttributeSet = new HashPrintRequestAttributeSet();
+        printRequestAttributeSet.add(MediaSizeName.ISO_B8);
+        printRequestAttributeSet.add(new Copies(2));
+        printRequestAttributeSet.add(OrientationRequested.PORTRAIT);
+        PrintServiceAttributeSet printServiceAttributeSet = new HashPrintServiceAttributeSet();
+        printServiceAttributeSet.add(new PrinterName(nombreImpresora, null));
+        JRPrintServiceExporter exporter = new JRPrintServiceExporter();
+        SimplePrintServiceExporterConfiguration configuration = new SimplePrintServiceExporterConfiguration();
+        configuration.setPrintRequestAttributeSet(printRequestAttributeSet);
+        configuration.setPrintServiceAttributeSet(printServiceAttributeSet);
+        configuration.setDisplayPageDialog(false);
+        configuration.setDisplayPrintDialog(false);
+        exporter.setExporterInput(new SimpleExporterInput(jp));
+        exporter.setConfiguration(configuration);
+        try{
+            exporter.exportReport();
+        }catch(JRException error){
+            System.out.print("No puede imprimir");
+        }
+        
+        
+        /*
+        JasperExportManager.exportReportToPdfFile(jp,this.guardarTicket);
+        //JasperViewer.viewReport(jp, false);
         if (Desktop.isDesktopSupported()) {
             try{
                 File myFile = new File(this.guardarTicket);
@@ -38,5 +73,7 @@ public class Reporte {
         else{
             System.out.print("Archivo no soportado");
         }
+        
+        */
     }
 }

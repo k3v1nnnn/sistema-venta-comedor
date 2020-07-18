@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="207.0" prefWidth="504.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.VentanaConfiguracionImpresoraController">
+   <top>
+      <VBox alignment="CENTER" prefHeight="35.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" text="Configuracion de Impresora" textAlignment="CENTER">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <Separator prefWidth="200.0" />
+         </children>
+      </VBox>
+   </top>
+   <center>
+      <HBox alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="80.0" prefWidth="477.0" spacing="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <ChoiceBox fx:id="impresoras" prefWidth="150.0" />
+            <Label fx:id="nombreDeImpresora" alignment="CENTER" prefHeight="49.0" prefWidth="224.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+   </center>
+   <bottom>
+      <VBox alignment="CENTER" prefHeight="51.0" prefWidth="504.0" BorderPane.alignment="CENTER">
+         <children>
+            <Separator prefWidth="200.0" />
+            <HBox alignment="CENTER" prefHeight="0.0" prefWidth="504.0" spacing="100.0">
+               <children>
+                  <Button fx:id="aceptar" mnemonicParsing="false" onAction="#aceptarBoton" text="Aceptar" textAlignment="CENTER" textFill="#048f04">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="cerrar" mnemonicParsing="false" onAction="#cerrarBoton" text="Cancelar" textFill="#ee0202">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </bottom>
+</BorderPane>

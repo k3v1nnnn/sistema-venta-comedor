@@ -18,10 +18,11 @@
                   <Font size="15.0" />
                </font></Button>
             <Separator orientation="VERTICAL" prefHeight="31.0" prefWidth="0.0" />
-            <Hyperlink fx:id="link" alignment="CENTER_RIGHT" onAction="#abrirPagina" scaleZ="0.0" text="Version 0.1" translateX="500.0">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets></Hyperlink>
+            <Button fx:id="impresora" mnemonicParsing="false" onAction="#impresoraImpresion" text="Impresora">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
         </items>
       </ToolBar>
    </top>
