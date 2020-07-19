@@ -3,10 +3,14 @@ package controlador;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.SortEvent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -30,6 +34,8 @@ public class VentanaConfiguracionProductoController implements Initializable {
     @FXML
     private TableColumn<Producto,Integer> columnaPrecioProducto;
     @FXML
+    private TableColumn<Producto, String> columnaTipoProducto;
+    @FXML
     private TextField nombreProducto;
     @FXML
     private TextField precioProducto;
@@ -41,6 +47,8 @@ public class VentanaConfiguracionProductoController implements Initializable {
     private Stage stage;
     private ArrayList<Producto> productos;
     private Producto productoElegido;
+    @FXML
+    private ChoiceBox<String> tipoDeProducto;
 
     public void VentanaConfiguracionProductoController(Stage stage,BaseDatosCsv baseDeDatos){
         this.baseDeDatos=baseDeDatos;
@@ -54,8 +62,12 @@ public class VentanaConfiguracionProductoController implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        ObservableList<String> tipos=FXCollections.observableArrayList();
+        tipos.addAll("Entrada","Sopa","Plato con Cerdo","Plato con Res","Plato con Pescado","Plato con Pollo","Bebidas Alcoholicas","Bebidas No Alcoholicas","Otros");
+        this.tipoDeProducto.setItems(tipos);
         this.columnaNombreProducto.setCellValueFactory(new PropertyValueFactory<Producto,String>("nombre"));
         this.columnaPrecioProducto.setCellValueFactory(new PropertyValueFactory<Producto,Integer>("precio"));
+        this.columnaTipoProducto.setCellValueFactory(new PropertyValueFactory<Producto,String>("tipoProducto"));
         this.configurarBotonesProductoNuevo();
     }    
 
@@ -64,10 +76,11 @@ public class VentanaConfiguracionProductoController implements Initializable {
         if(!this.datosEstanVacios()){
             String nombre=this.nombreProducto.getText();
             int precio=Integer.parseInt(this.precioProducto.getText());
-            Producto productoNuevo=new Producto(nombre,precio,0);
+            String tipo=this.tipoDeProducto.getSelectionModel().getSelectedItem();
+            Producto productoNuevo=new Producto(nombre,precio,0,tipo);
             this.productos.add(productoNuevo);
             this.tablaDeProductos.getItems().add(productoNuevo);
-            this.baseDeDatos.agregarProducto(nombre, precio);
+            this.baseDeDatos.agregarProducto(nombre, precio,tipo);
             this.limpiarCamposTexto();
         }
     }
@@ -130,6 +143,6 @@ public class VentanaConfiguracionProductoController implements Initializable {
     }
     
     private boolean datosEstanVacios(){
-        return (this.precioProducto.getText()==null)||(this.nombreProducto.getText()==null);
+        return (this.precioProducto.getText()==null)||(this.nombreProducto.getText()==null)||(this.tipoDeProducto.getSelectionModel().getSelectedItem()==null);
     }
 }

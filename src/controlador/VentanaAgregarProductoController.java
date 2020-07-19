@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -36,11 +37,33 @@ public class VentanaAgregarProductoController implements Initializable {
     private TableColumn<Producto,Integer> columnaPrecioProducto;
     @FXML
     private TableColumn<Producto,Integer> columnaCantidadProducto;
+    @FXML
+    private TableColumn<Producto, String> columnaTipoProducto;
     private BaseDatosCsv baseDeDatos;
     private Stage stage;
     private Compra compra;
     private ArrayList<Producto> filtrarProductos;
     private VentanaCompraController ventanaCompra;
+    @FXML
+    private CheckBox pTodos;
+    @FXML
+    private CheckBox pOtros;
+    @FXML
+    private CheckBox pEntrada;
+    @FXML
+    private CheckBox pSopa;
+    @FXML
+    private CheckBox pPescado;
+    @FXML
+    private CheckBox pRes;
+    @FXML
+    private CheckBox pPollo;
+    @FXML
+    private CheckBox pCerdo;
+    @FXML
+    private CheckBox pAlcohol;
+    @FXML
+    private CheckBox pSinAlcohol;
 
     public void VentanaAgregarProductoControler(Stage stage,BaseDatosCsv baseDeDatos,Compra compra,VentanaCompraController ventanaCompra){
         this.baseDeDatos=baseDeDatos;
@@ -59,6 +82,7 @@ public class VentanaAgregarProductoController implements Initializable {
         this.columnaNombreProducto.setCellValueFactory(new PropertyValueFactory<Producto,String>("nombre"));
         this.columnaPrecioProducto.setCellValueFactory(new PropertyValueFactory<Producto,Integer>("precio"));
         this.columnaCantidadProducto.setCellValueFactory(new PropertyValueFactory<Producto,Integer>("cantidad"));
+        this.columnaTipoProducto.setCellValueFactory(new PropertyValueFactory<Producto,String>("tipoProducto"));
     }    
 
     @FXML
@@ -90,5 +114,50 @@ public class VentanaAgregarProductoController implements Initializable {
                     ((ProductoElegido) node).actualizarProductoElegido();}
             }
         }
+    }
+
+    @FXML
+    private void todosElegidos(ActionEvent event) {
+        if(this.pTodos.isSelected()){
+            System.out.println("Correcto");
+        }else{
+            System.out.println("Incorrecto");
+        }
+    }
+
+    @FXML
+    private void otrosElegidos(ActionEvent event) {
+    }
+
+    @FXML
+    private void entradaElegidos(ActionEvent event) {
+    }
+
+    @FXML
+    private void sopaElegidos(ActionEvent event) {
+    }
+
+    @FXML
+    private void pescadoElegidos(ActionEvent event) {
+    }
+
+    @FXML
+    private void resElegidos(ActionEvent event) {
+    }
+
+    @FXML
+    private void polloElegidos(ActionEvent event) {
+    }
+
+    @FXML
+    private void cerdoElegidos(ActionEvent event) {
+    }
+
+    @FXML
+    private void alcoholElegidos(ActionEvent event) {
+    }
+
+    @FXML
+    private void sinAlcoholElegidos(ActionEvent event) {
     }
 }

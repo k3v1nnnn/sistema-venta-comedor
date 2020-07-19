@@ -55,10 +55,10 @@ public class BaseDatosCsv{
             Logger.getLogger(BaseDatosCsv.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public void agregarProducto(String nombre, int precio) {
+    public void agregarProducto(String nombre, int precio,String tipo) {
         try {
             CSVWriter csvWriter = new CSVWriter(new FileWriter(this.nombreArchivoComida,true));
-            String[] productoNuevo = {nombre,String.valueOf(precio)}; 
+            String[] productoNuevo = {nombre,String.valueOf(precio),tipo}; 
             csvWriter.writeNext(productoNuevo);
             csvWriter.close();
         } catch (FileNotFoundException ex) {
@@ -92,7 +92,7 @@ public class BaseDatosCsv{
             csvReader.skip(1);
             String[] nextRecord;
             while ((nextRecord = csvReader.readNext()) != null) {
-                productosDatos.add(new Producto(nextRecord[0],Integer.parseInt(nextRecord[1]),0));
+                productosDatos.add(new Producto(nextRecord[0],Integer.parseInt(nextRecord[1]),0,nextRecord[2]));
             }
             csvReader.close();
         } catch (FileNotFoundException ex) {

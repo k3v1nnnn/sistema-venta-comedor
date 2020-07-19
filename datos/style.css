@@ -1,0 +1,7 @@
+.combo-box{
+    -fx-border-width: 0.5px;
+    -fx-border-color: #ff6600;
+    -fx-border-radius: 50px;
+    -fx-background-radius: 50px;
+    -fx-font-size: 15px;
+}
