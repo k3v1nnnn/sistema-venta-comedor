@@ -6,7 +6,7 @@ Una vez finalizado el pedido queda guardado en una base de datos el precio del p
 
 ## Construido con 🛠️
 
-* [MongoDB](https://www.mongodb.com/es) - Base de Datos
+* [OpenCSV](http://opencsv.sourceforge.net/) - Datos
 * [JavaFX](https://openjfx.io/) - Interfaz grafica
 * [Java](https://www.java.com/es/) 
 
