@@ -72,9 +72,9 @@ public class BaseDatosCsv{
         try {
             CSVWriter csvWriter = new CSVWriter(new FileWriter(this.nombreArchivoComida));
             List<String[]> data = new ArrayList<>(); 
-            data.add(new String[] { "nombre", "precio"});
+            data.add(new String[] { "nombre", "precio","tipo"});
             for (Producto producto:productos){
-                data.add(new String[] {producto.getNombre(),String.valueOf(producto.getPrecio())});
+                data.add(new String[] {producto.getNombre(),String.valueOf(producto.getPrecio()),producto.getTipoProducto()});
             }
             csvWriter.writeAll(data);
             csvWriter.close();

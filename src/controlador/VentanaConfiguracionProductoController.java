@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.SingleSelectionModel;
 import javafx.scene.control.SortEvent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -63,7 +64,8 @@ public class VentanaConfiguracionProductoController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ObservableList<String> tipos=FXCollections.observableArrayList();
-        tipos.addAll("Entrada","Sopa","Plato con Cerdo","Plato con Res","Plato con Pescado","Plato con Pollo","Bebidas Alcoholicas","Bebidas No Alcoholicas","Otros");
+        tipos.addAll("Entrada","Sopa","Plato con Cerdo","Plato con Res","Plato con Pescado",
+                "Plato con Pollo","Bebidas Alcoholicas","Bebidas No Alcoholicas","Otros");
         this.tipoDeProducto.setItems(tipos);
         this.columnaNombreProducto.setCellValueFactory(new PropertyValueFactory<Producto,String>("nombre"));
         this.columnaPrecioProducto.setCellValueFactory(new PropertyValueFactory<Producto,Integer>("precio"));
@@ -75,7 +77,12 @@ public class VentanaConfiguracionProductoController implements Initializable {
     private void agregarProductoBoton(ActionEvent event) {
         if(!this.datosEstanVacios()){
             String nombre=this.nombreProducto.getText();
-            int precio=Integer.parseInt(this.precioProducto.getText());
+            int precio;
+            try{
+                precio=Integer.parseInt(this.precioProducto.getText());
+            }catch(NumberFormatException e){
+                precio=0;
+            }
             String tipo=this.tipoDeProducto.getSelectionModel().getSelectedItem();
             Producto productoNuevo=new Producto(nombre,precio,0,tipo);
             this.productos.add(productoNuevo);
@@ -115,10 +122,12 @@ public class VentanaConfiguracionProductoController implements Initializable {
         if(!this.datosEstanVacios()){
             String nombre=this.nombreProducto.getText();
             int precio=Integer.parseInt(this.precioProducto.getText());
+            String tipo=this.tipoDeProducto.getSelectionModel().getSelectedItem();
             this.productoElegido.setNombre(nombre);
             this.productoElegido.setPrecio(precio);
-            this.productoElegido=null;
+            this.productoElegido.setTipoProducto(tipo);
             this.baseDeDatos.guardarProductos(this.productos);
+            this.productoElegido=null;
             this.limpiarCamposTexto();
             this.configurarBotonesProductoNuevo();
         }

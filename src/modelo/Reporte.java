@@ -2,8 +2,6 @@ package modelo;
 
 import java.util.ArrayList;
 import java.util.Map;
-import javax.print.PrintService;
-import javax.print.PrintServiceLookup;
 import javax.print.attribute.HashPrintRequestAttributeSet;
 import javax.print.attribute.HashPrintServiceAttributeSet;
 import javax.print.attribute.PrintRequestAttributeSet;
@@ -22,21 +20,20 @@ import net.sf.jasperreports.export.SimplePrintServiceExporterConfiguration;
 
 public class Reporte {
     private final String ticket;
+    
     public Reporte(){
+        
         this.ticket="reporte/esqueletoTicket.jasper";
     }
     public void lanzarReporte(Map parametros, ArrayList<String> configs){
         JasperPrint jp=null;
         String nombreImpresora=configs.get(0);
-        int posicionImpresora=Integer.parseInt(configs.get(1));
         try {
           jp =JasperFillManager.fillReport(this.ticket, parametros,new JREmptyDataSource());
         }
         catch (JRException error) {
-            System.out.print("Error");
+            System.out.print("Error al crear el reporte");
         }
-        PrintService[] services = PrintServiceLookup.lookupPrintServices(null, null);
-        PrintService selecService = services[posicionImpresora];
         PrintRequestAttributeSet printRequestAttributeSet = new HashPrintRequestAttributeSet();
         printRequestAttributeSet.add(MediaSizeName.ISO_B8);
         printRequestAttributeSet.add(new Copies(2));
@@ -54,26 +51,7 @@ public class Reporte {
         try{
             exporter.exportReport();
         }catch(JRException error){
-            System.out.print("No puede imprimir");
+            System.out.println("Error no se puede imprimir");
         }
-        
-        
-        /*
-        JasperExportManager.exportReportToPdfFile(jp,this.guardarTicket);
-        //JasperViewer.viewReport(jp, false);
-        if (Desktop.isDesktopSupported()) {
-            try{
-                File myFile = new File(this.guardarTicket);
-                Desktop.getDesktop().open(myFile);
-            }
-            catch(IOException error){
-                System.out.print("Archivo no soportado");
-            }
-          }
-        else{
-            System.out.print("Archivo no soportado");
-        }
-        
-        */
     }
 }
