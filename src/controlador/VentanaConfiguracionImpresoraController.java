@@ -17,11 +17,7 @@ import javax.print.PrintServiceLookup;
 import modelo.BaseDatosCsv;
 import modelo.Impresora;
 
-/**
- * FXML Controller class
- *
- * @author RetailAdmin
- */
+
 public class VentanaConfiguracionImpresoraController implements Initializable {
 
     @FXML
@@ -60,6 +56,7 @@ public class VentanaConfiguracionImpresoraController implements Initializable {
             this.baseDatos.agregarConfiguracion(nombre, valor);
             this.nombreDeImpresora.setText(nombre);
             this.cerrar.setText("Cerrar");
+            this.aceptar.setDisable(true);
         }
     }
 

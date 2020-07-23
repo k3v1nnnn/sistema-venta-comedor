@@ -31,7 +31,7 @@
 		<band height="98">
 			<image>
 				<reportElement x="5" y="1" width="184" height="73" uuid="08b0db4f-889b-4d33-8c19-e94de8c71c10"/>
-				<imageExpression><![CDATA["C:\\Users\\RetailAdmin\\Documents\\NetBeansProjects\\SistemaVentasComedor\\reporte\\image.jpeg"]]></imageExpression>
+				<imageExpression><![CDATA["../reporte/image.jpeg"]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="13" y="78" width="47" height="20" uuid="c8184aac-56af-428f-81a6-86e01a6dd894"/>

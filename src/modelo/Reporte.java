@@ -1,13 +1,15 @@
 package modelo;
 
+import java.awt.print.PrinterJob;
 import java.util.ArrayList;
 import java.util.Map;
+import javax.print.PrintService;
+import javax.print.PrintServiceLookup;
 import javax.print.attribute.HashPrintRequestAttributeSet;
 import javax.print.attribute.HashPrintServiceAttributeSet;
 import javax.print.attribute.PrintRequestAttributeSet;
 import javax.print.attribute.PrintServiceAttributeSet;
 import javax.print.attribute.standard.Copies;
-import javax.print.attribute.standard.MediaSizeName;
 import javax.print.attribute.standard.OrientationRequested;
 import javax.print.attribute.standard.PrinterName;
 import net.sf.jasperreports.engine.JREmptyDataSource;
@@ -28,14 +30,19 @@ public class Reporte {
     public void lanzarReporte(Map parametros, ArrayList<String> configs){
         JasperPrint jp=null;
         String nombreImpresora=configs.get(0);
+        int impresora=Integer.parseInt(configs.get(1));
         try {
           jp =JasperFillManager.fillReport(this.ticket, parametros,new JREmptyDataSource());
         }
         catch (JRException error) {
             System.out.print("Error al crear el reporte");
         }
+        
+        PrinterJob printerJob = PrinterJob.getPrinterJob();
+        PrintService[] services = PrintServiceLookup.lookupPrintServices(null, null);
+        PrintService selecService = services[impresora];
+        
         PrintRequestAttributeSet printRequestAttributeSet = new HashPrintRequestAttributeSet();
-        printRequestAttributeSet.add(MediaSizeName.ISO_B8);
         printRequestAttributeSet.add(new Copies(2));
         printRequestAttributeSet.add(OrientationRequested.PORTRAIT);
         PrintServiceAttributeSet printServiceAttributeSet = new HashPrintServiceAttributeSet();
