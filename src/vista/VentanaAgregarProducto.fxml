@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.VentanaAgregarProductoController">
+<BorderPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.VentanaAgregarProductoController">
    <bottom>
       <HBox alignment="CENTER" prefHeight="38.0" prefWidth="600.0" spacing="50.0" BorderPane.alignment="CENTER">
          <children>
@@ -25,12 +25,12 @@
       </HBox>
    </bottom>
    <center>
-      <TableView fx:id="tablaDeProductos" editable="true" onMouseClicked="#obtenerProducto" prefHeight="562.0" prefWidth="450.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="tablaDeProductos" editable="true" onMouseClicked="#obtenerProducto" prefHeight="605.0" prefWidth="556.0" style="-fx-font-size: 18px;" BorderPane.alignment="CENTER">
         <columns>
-            <TableColumn fx:id="columnaCantidadProducto" editable="false" prefWidth="60.0" resizable="false" sortable="false" text="Cantidad" />
-            <TableColumn fx:id="columnaTipoProducto" editable="false" prefWidth="131.0" resizable="false" sortable="false" text="Tipo" />
-          <TableColumn fx:id="columnaNombreProducto" editable="false" minWidth="0.0" prefWidth="216.0" resizable="false" sortable="false" text="Nombre" />
-          <TableColumn fx:id="columnaPrecioProducto" editable="false" minWidth="0.0" prefWidth="93.0" resizable="false" sortable="false" text="Precio" />
+            <TableColumn fx:id="columnaCantidadProducto" editable="false" prefWidth="93.0" resizable="false" sortable="false" text="Cantidad" />
+            <TableColumn fx:id="columnaTipoProducto" editable="false" prefWidth="155.0" resizable="false" sortable="false" text="Tipo" />
+          <TableColumn fx:id="columnaNombreProducto" editable="false" minWidth="0.0" prefWidth="240.0" resizable="false" sortable="false" text="Nombre" />
+          <TableColumn fx:id="columnaPrecioProducto" editable="false" minWidth="0.0" prefWidth="112.0" resizable="false" sortable="false" text="Precio" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -38,10 +38,10 @@
       </TableView>
    </center>
    <right>
-      <VBox fx:id="productosElegidos" alignment="TOP_CENTER" prefHeight="505.0" prefWidth="299.0" style="-fx-background-color: grey;" BorderPane.alignment="CENTER" />
+      <VBox fx:id="productosElegidos" alignment="TOP_CENTER" prefHeight="604.0" prefWidth="299.0" style="-fx-background-color: grey;" BorderPane.alignment="CENTER" />
    </right>
    <top>
-      <HBox alignment="CENTER" prefHeight="57.0" prefWidth="800.0" spacing="50.0" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER" prefHeight="57.0" prefWidth="800.0" spacing="60.0" BorderPane.alignment="CENTER">
          <children>
             <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" spacing="5.0">
                <children>
@@ -71,9 +71,9 @@
                   </CheckBox>
                </children>
             </VBox>
-            <VBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="117.0" spacing="5.0">
+            <VBox alignment="CENTER_LEFT" prefHeight="57.0" prefWidth="116.0" spacing="5.0">
                <children>
-                  <CheckBox fx:id="pPescado" mnemonicParsing="false" onAction="#pescadoElegidos" text="Con Pescado">
+                  <CheckBox fx:id="pPescado" mnemonicParsing="false" onAction="#pescadoElegidos" prefHeight="21.0" prefWidth="128.0" text="Con Pescado">
                      <font>
                         <Font size="15.0" />
                      </font>

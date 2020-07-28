@@ -131,7 +131,12 @@ public class VentanaCompraController implements Initializable {
     private void aceptarPedidoBoton(ActionEvent event) {
         String fecha=this.fechaDeLaCompra();
         int precioTotal=this.compra.subTotalCompra()-this.montoDescuento;
-        int numero=Integer.parseInt(this.numeroTicket.getText());
+        int numero=0;
+        try{
+            numero=Integer.parseInt(this.numeroTicket.getText());
+        }catch(NumberFormatException e){
+            numero=0;
+        }
         Reporte report=new Reporte();
         Map param=this.compra.impresionDeLaCompra();
         param.put("fecha", fecha);
