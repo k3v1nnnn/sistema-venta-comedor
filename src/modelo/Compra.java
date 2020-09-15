@@ -28,7 +28,7 @@ public class Compra {
         int subTotal=0;
         if(!this.listaDeProductos.isEmpty()){
             for (Producto prod:this.listaDeProductos){
-                subTotal=subTotal+(prod.getCantidad()*prod.getPrecio());
+                subTotal=subTotal+(prod.importe());
             }
         }
         return subTotal;
@@ -55,14 +55,17 @@ public class Compra {
         List<String> cantidad=new ArrayList<>();
         List<String> precio=new ArrayList<>();
         List<String> productos=new ArrayList<>();
+        List<String> importes=new ArrayList<>();
         for(Producto producto:this.listaDeProductos){
             cantidad.add(Integer.toString(producto.getCantidad()));
             precio.add(Integer.toString(producto.getPrecio()));
             productos.add(producto.getNombre());
+            importes.add(Integer.toString(producto.importe()));
         }
         param.put("precio",precio);
         param.put("producto",productos);
         param.put("cantidad",cantidad);
+        param.put("importe",importes);
         param.put("total", this.subTotalCompra()+"");
         return param;
     }

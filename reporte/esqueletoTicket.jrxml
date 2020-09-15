@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Ticket" pageWidth="215" pageHeight="500" columnWidth="213" leftMargin="1" rightMargin="1" topMargin="1" bottomMargin="1" whenResourceMissingType="Empty" uuid="c3ff57f1-f524-4628-a5f7-c5ecab7d5553">
-	<property name="ireport.zoom" value="2.3579476910000152"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="31"/>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Ticket" pageWidth="216" pageHeight="500" columnWidth="214" leftMargin="1" rightMargin="1" topMargin="1" bottomMargin="1" whenResourceMissingType="Empty" uuid="c3ff57f1-f524-4628-a5f7-c5ecab7d5553">
+	<property name="ireport.zoom" value="2.593742460100034"/>
+	<property name="ireport.x" value="67"/>
+	<property name="ireport.y" value="57"/>
 	<subDataset name="dataset1" uuid="b3be3c06-32e1-4ebf-9c6f-bd1e89bac4ea">
 		<field name="_THIS" class="java.lang.String"/>
 	</subDataset>
@@ -10,6 +10,9 @@
 		<field name="_THIS" class="java.lang.String"/>
 	</subDataset>
 	<subDataset name="dataset3" uuid="5e71535d-0352-4898-8f28-f0c46c1ad1ed">
+		<field name="_THIS" class="java.lang.String"/>
+	</subDataset>
+	<subDataset name="dataset4" uuid="3b3bdda9-f03e-4a16-9625-1ff37979a23e">
 		<field name="_THIS" class="java.lang.String"/>
 	</subDataset>
 	<parameter name="fecha" class="java.lang.String">
@@ -24,6 +27,7 @@
 	<parameter name="total" class="java.lang.String"/>
 	<parameter name="producto" class="java.util.Collection"/>
 	<parameter name="precio" class="java.util.Collection"/>
+	<parameter name="importe" class="java.util.Collection"/>
 	<queryString language="SQL">
 		<![CDATA[]]>
 	</queryString>
@@ -58,7 +62,7 @@
 	<pageHeader>
 		<band height="43" splitType="Stretch">
 			<staticText>
-				<reportElement x="5" y="2" width="40" height="15" uuid="38cbfae8-05d0-4540-98de-e52ba2c427b0"/>
+				<reportElement x="2" y="2" width="40" height="15" uuid="38cbfae8-05d0-4540-98de-e52ba2c427b0"/>
 				<textElement verticalAlignment="Middle">
 					<font size="10"/>
 				</textElement>
@@ -78,7 +82,7 @@
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="5" y="24" width="35" height="15" uuid="84650539-74f2-4b7c-af76-ba3cee80eb15"/>
+				<reportElement x="2" y="24" width="35" height="15" uuid="84650539-74f2-4b7c-af76-ba3cee80eb15"/>
 				<textElement verticalAlignment="Middle">
 					<font size="10"/>
 				</textElement>
@@ -94,7 +98,7 @@
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="19" splitType="Stretch">
+		<band height="29" splitType="Stretch">
 			<line>
 				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="213" height="1" uuid="b01cf927-8b4a-456a-8e7e-2f111b144990"/>
 				<graphicElement>
@@ -102,41 +106,56 @@
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="6" y="2" width="44" height="15" uuid="19958803-9573-4614-9726-e8b0952aa0c8"/>
+				<reportElement x="2" y="7" width="41" height="15" uuid="19958803-9573-4614-9726-e8b0952aa0c8"/>
 				<textElement verticalAlignment="Middle">
 					<font size="10"/>
 				</textElement>
 				<text><![CDATA[Cantidad]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="55" y="2" width="47" height="15" uuid="f0889a22-607d-4d74-a976-e3a34e2c7866"/>
-				<textElement verticalAlignment="Middle">
+				<reportElement x="46" y="7" width="42" height="15" uuid="f0889a22-607d-4d74-a976-e3a34e2c7866"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
 					<font size="10"/>
 				</textElement>
-				<text><![CDATA[Productos]]></text>
+				<text><![CDATA[Producto]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="165" y="1" width="29" height="15" uuid="4b02ce01-1acc-4822-bbe8-1176848c25b7"/>
-				<textElement verticalAlignment="Middle">
+				<reportElement x="129" y="2" width="30" height="15" uuid="4b02ce01-1acc-4822-bbe8-1176848c25b7"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
 					<font size="10"/>
 				</textElement>
 				<text><![CDATA[Precio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="127" y="14" width="34" height="15" uuid="7fa210ea-5b70-464e-9be6-0cde49efac0a"/>
+				<text><![CDATA[Unidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="173" y="2" width="30" height="15" uuid="5ae778bc-f069-4917-ae08-bcf2b6ef3474"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Precio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="175" y="14" width="24" height="15" uuid="5284072b-a649-462b-ac2d-340382bd16b5"/>
+				<text><![CDATA[Total]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="67" splitType="Stretch">
 			<componentElement>
-				<reportElement positionType="Float" stretchType="RelativeToTallestObject" isPrintRepeatedValues="false" x="6" y="2" width="48" height="15" uuid="b789c49d-457c-4f35-b6d9-f02e85c181da"/>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" isPrintRepeatedValues="false" x="2" y="2" width="43" height="15" uuid="b789c49d-457c-4f35-b6d9-f02e85c181da"/>
 				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
 					<datasetRun subDataset="dataset1" uuid="3b43ee23-12be-472a-ac61-629de43409dc">
 						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{cantidad})]]></dataSourceExpression>
 					</datasetRun>
-					<jr:listContents height="15" width="48">
+					<jr:listContents height="15" width="43">
 						<textField isStretchWithOverflow="true">
-							<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="0" y="0" width="47" height="15" isPrintWhenDetailOverflows="true" uuid="f45a1826-8948-47a9-8354-92ce79951583"/>
-							<textElement verticalAlignment="Middle">
-								<font size="10"/>
+							<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="0" y="0" width="43" height="15" isPrintWhenDetailOverflows="true" uuid="f45a1826-8948-47a9-8354-92ce79951583"/>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font size="9"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$F{_THIS}]]></textFieldExpression>
 						</textField>
@@ -144,16 +163,16 @@
 				</jr:list>
 			</componentElement>
 			<componentElement>
-				<reportElement positionType="Float" stretchType="RelativeToTallestObject" isPrintRepeatedValues="false" x="55" y="2" width="100" height="15" uuid="39564dfd-aa21-42b0-8d5e-a3eb8a214fda"/>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" isPrintRepeatedValues="false" x="46" y="2" width="76" height="15" uuid="39564dfd-aa21-42b0-8d5e-a3eb8a214fda"/>
 				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical" ignoreWidth="true">
 					<datasetRun subDataset="dataset2" uuid="35fce394-8ef8-4098-af19-b82d57520231">
 						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{producto})]]></dataSourceExpression>
 					</datasetRun>
-					<jr:listContents height="15" width="100">
+					<jr:listContents height="15" width="76">
 						<textField>
-							<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="0" y="0" width="100" height="15" isPrintWhenDetailOverflows="true" uuid="1559a377-2382-4eab-9892-9a4481cf802d"/>
+							<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="0" y="0" width="76" height="15" isPrintWhenDetailOverflows="true" uuid="1559a377-2382-4eab-9892-9a4481cf802d"/>
 							<textElement verticalAlignment="Middle">
-								<font size="10"/>
+								<font size="9"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$F{_THIS}]]></textFieldExpression>
 						</textField>
@@ -161,16 +180,33 @@
 				</jr:list>
 			</componentElement>
 			<componentElement>
-				<reportElement positionType="Float" stretchType="RelativeToTallestObject" isPrintRepeatedValues="false" x="165" y="2" width="50" height="15" uuid="485383cf-5470-4113-b457-ef1f8337f689"/>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" isPrintRepeatedValues="false" x="123" y="2" width="43" height="15" uuid="485383cf-5470-4113-b457-ef1f8337f689"/>
 				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
 					<datasetRun subDataset="dataset3" uuid="3addfd11-a57a-41eb-810f-024847b87582">
 						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{precio})]]></dataSourceExpression>
 					</datasetRun>
-					<jr:listContents height="15" width="50">
+					<jr:listContents height="15" width="43">
 						<textField isStretchWithOverflow="true">
-							<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="0" y="0" width="50" height="15" isPrintWhenDetailOverflows="true" uuid="0a89258a-b406-444d-8b05-302c81e355ee"/>
-							<textElement>
-								<font size="10"/>
+							<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="0" y="0" width="43" height="15" isPrintWhenDetailOverflows="true" uuid="0a89258a-b406-444d-8b05-302c81e355ee"/>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font size="9"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{_THIS}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+			<componentElement>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" isPrintRepeatedValues="false" x="166" y="2" width="43" height="15" uuid="2aae624e-1e93-424d-b910-102b41ae0ac9"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="dataset4" uuid="e0939d35-5eb5-4dee-a1b7-87f976a6ced4">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{importe})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:listContents height="15" width="43">
+						<textField>
+							<reportElement x="0" y="0" width="43" height="15" uuid="82782f26-58b5-425a-b17b-b9b556f4e70c"/>
+							<textElement textAlignment="Center" verticalAlignment="Middle">
+								<font size="9"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$F{_THIS}]]></textFieldExpression>
 						</textField>
@@ -184,11 +220,11 @@
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement positionType="Float" x="6" y="26" width="40" height="16" uuid="0d147819-1c69-4b2d-85b7-df66a3744968"/>
+				<reportElement positionType="Float" x="2" y="26" width="67" height="16" uuid="0d147819-1c69-4b2d-85b7-df66a3744968"/>
 				<textElement verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Total:]]></text>
+				<text><![CDATA[Total Final:]]></text>
 			</staticText>
 			<line>
 				<reportElement positionType="Float" x="0" y="24" width="213" height="1" uuid="704ada64-f6d5-4aa5-8f0a-c33990012d19"/>
@@ -197,8 +233,8 @@
 				</graphicElement>
 			</line>
 			<textField>
-				<reportElement positionType="Float" x="165" y="26" width="52" height="16" uuid="a9f6e7ce-0112-4c09-83e1-3de92887e8e4"/>
-				<textElement verticalAlignment="Middle">
+				<reportElement positionType="Float" x="167" y="26" width="52" height="16" uuid="a9f6e7ce-0112-4c09-83e1-3de92887e8e4"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{total}]]></textFieldExpression>

@@ -49,4 +49,7 @@ public class Producto {
             this.setCantidad(this.getCantidad()-1);
         }
     }
+    public int importe(){
+        return this.precio.get()*this.cantidad.get();
+    }
 }
